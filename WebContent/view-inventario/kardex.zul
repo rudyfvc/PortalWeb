@@ -1,0 +1,96 @@
+<zk>
+	<window title="Kardex" border="none" height="80%" width="70%"
+		apply="com.portal.control.inventario.WdwKardex" id="wdwKardex"
+		class="panel-default" closable="true">
+		<grid width="100%" sclass="fgrid">
+			<columns>
+				<column width="30%" />
+				<column width="70%" />
+				<column width="30%" />
+				<column width="70%" />
+				<column width="20%" />
+				<column width="80%" />
+			</columns>
+			<rows>
+				<row>
+					<label value="Empresa" />
+					<textbox id="txtEmpresa" class="form-control"
+						readonly="true" />
+					<label value="Código" />
+					<textbox id="txtCodProducto" class="form-control"
+						readonly="true" />
+				</row>
+				<row>
+					<label value="Periodo" />
+					<textbox id="txtPeriodo" class="form-control"
+						readonly="true" />
+					<label value="Producto" />
+					<cell colspan="3">
+						<textbox id="txtProducto" class="form-control"
+							readonly="true" />
+					</cell>
+
+				</row>
+				<row>
+					<label value="" />
+					<label value="" />
+					<label value="Tipo Producto" />
+					<textbox id="txtTipoProducto" class="form-control"
+						readonly="true" />
+				</row>
+				<row>
+					<label value="" />
+					<label value="" />
+					<label value="Unidad Medida" />
+					<textbox id="txtUnidadMedida" class="form-control"
+						readonly="true" />
+				</row>
+			</rows>
+		</grid>
+		<separator height="10px" />
+		<hbox vflex="1" hflex="1">
+			<listbox id="ltbKardex" multiple="false" vflex="1">
+				<custom-attributes org.zkoss.zul.nativebar="true" />
+				<listhead>
+					<listheader label="Documento" width="8%" />
+					<listheader label="Serie" width="8%" />
+					<listheader label="Número" width="8%" />
+					<listheader label="Fecha" width="8%" />
+					<listheader label="Tipo Movimiento" width="11%" />
+					<listheader label="Descripción" width="30%" />
+					<listheader label="Entradas" width="9%"
+						style="text-align:center" />
+					<listheader label="Salidas" width="9%"
+						style="text-align:center" />
+					<listheader label="Existencia" width="9%"
+						style="text-align:center" />
+				</listhead>
+				<template name="model">
+					<listitem>
+						<listcell label="${each.doc_tipo}" />
+						<listcell label="${each.doc_serie}" />
+						<listcell label="${each.doc_numero}" />
+						<listcell label="${each.doc_fecha}" />
+						<listcell label="${each.tipo_movimiento}" />
+						<listcell label="${each.descripcion}" />
+						<listcell label="${each.entrada}"
+							class="format-cantidad" />
+						<listcell label="${each.salida}"
+							class="format-cantidad" />
+						<listcell label="${each.existencia}"
+							class="format-cantidad" />
+					</listitem>
+				</template>
+			</listbox>
+		</hbox>
+		<separator height="5px" />
+		<div align="right">
+			<button label="Exportar" id="btnExportar"
+				iconSclass="z-icon-download" class="btn btn-primary" width="150px" />
+			<button label="Imprimir" id="btnImprimir"
+				iconSclass="z-icon-print" class="btn btn-primary" width="150px" />
+		</div>
+	</window>
+</zk>
+
+

@@ -1,0 +1,74 @@
+<zk>
+	<window title="Tipo Producto" border="none" class="panel-default"
+		apply="com.portal.control.catalogos.WdwTipoProducto" height="100%"
+		id="wdwTipoProducto">
+		<div align="center">
+			<div width="50%">
+				<groupbox>
+					<caption id="cptAccion" label="Tipo " />
+					<grid sclass="grid-sin-borde">
+						<columns>
+							<column></column>
+							<column></column>
+						</columns>
+						<rows>
+							<row>
+								<label value="Tipo Producto" />
+								<textbox id="txtTipoProducto"
+									class="form-control" maxlength="50" />
+							</row>
+							<row>
+								<label></label>
+								<button label="Guardar" width="100%"
+									id="btnGuardar" class="btn btn-success" iconSclass="" />
+							</row>
+
+						</rows>
+					</grid>
+				</groupbox>
+			</div>
+			<separator height="25px" />
+			<div width="75%">
+				<listbox id="ltbTipoProducto" mold="paging"
+					pageSize="5">
+					<custom-attributes org.zkoss.zul.nativebar="true" />
+					<listhead>
+						<listheader label="Tipo Producto" width="15%" />
+						<listheader label="Estado" width="15%" />
+						<listheader label="Creado por" width="10%" />
+						<listheader label="Fecha creación" width="10%" />
+						<listheader label="Editado por" width="10%" />
+						<listheader label="Fecha edición" width="10%" />
+						<listheader width="10%" />
+						<listheader width="10%" />
+					</listhead>
+					<template name="model">
+						<listitem value="${each}">
+							<listcell label="${each.tipo_producto}" />
+							<listcell label="${each.estado}" />
+							<listcell label="${each.log_insertuser}"
+								style="font-size: 10px" />
+							<listcell label="${each.log_insertdate}"
+								style="font-size: 10px" />
+							<listcell label="${each.log_updatedate}"
+								style="font-size: 10px" />
+							<listcell label="${each.log_updateuser}"
+								style="font-size: 10px" />
+							<listcell>
+								<button iconSclass="z-icon-edit"
+									forward="onClick=wdwTipoProducto.onUpdateItem(${each})"
+									class="btn-success" />
+							</listcell>
+							<listcell>
+								<button iconSclass="z-icon-times"
+									forward="onClick=wdwTipoProducto.onHabilitarItem(${each})"
+									class="btn-danger" />
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
+			</div>
+		</div>
+
+	</window>
+</zk>

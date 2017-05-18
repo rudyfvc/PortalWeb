@@ -1,0 +1,25 @@
+/************ ICONOS DEL MENU DE OPCIONES ************/
+
+/*Setear un maximo de tamaño para la imagen*/
+.bigicons .z-menu-image, .bigicons .z-menuitem-image {
+	max-width: 30px;
+}
+
+/*mover el separador vertical un poco a la derecha*/
+.bigicons
+		.z-menupopup-separator {
+	left: 45px;
+}
+
+/*Cambiando el tamaño de la fuente*/
+.bigicons .z-menu-icon.z-icon-caret-right {
+	font-size: 20px;
+	top: 11px;
+}
+/****************************************************/
+
+/************ ICONOS DEL MENU DE USUARIO ************/
+.z-menubar-ver {
+	border: 0;
+	background: transparent;
+}

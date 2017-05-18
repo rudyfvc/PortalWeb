@@ -1,0 +1,56 @@
+<zk>
+	<window title="Producto" border="normal" mode="modal"
+		id="wdwProducto" width="450px"
+		apply="com.portal.control.inventario.WdwProducto" closable="true"
+		class="panel-default">
+		<div>
+			<groupbox>
+				<caption label="Datos Generales" />
+				<grid class="grid-sin-borde">
+					<columns>
+						<column />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<label value="Código" />
+							<textbox id="txtCodigoProducto"
+								class="form-control" maxlength="20" readonly="true" />
+						</row>
+						<row>
+							<label value="Descripción Producto" />
+							<textbox id="txtProducto" multiline="true"
+								rows="4" class="form-control" maxlength="75" />
+						</row>
+						<row>
+							<label value="Tipo Producto" />
+							<combobox id="cmbTipoProducto"
+								value="- Seleccione -" readonly="true" autocomplete="true">
+							</combobox>
+						</row>
+						<row>
+							<label value="Marca" />
+							<combobox id="cmbMarca"
+								value="- Seleccione -" readonly="true">
+							</combobox>
+						</row>
+						<row>
+							<label value="Unidad Medida" />
+							<combobox id="cmbUnidadMedida"
+								value="- Seleccione -" readonly="true">
+							</combobox>
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+		</div>
+		<div class=" col-xs-12 separador" />
+		<div align="right">
+			<button label="Cancelar" id="btnCancelar"
+				iconSclass="z-icon-times" class="btn btn-warning btn-footer"
+				onClick="wdwProducto.detach()" />
+			<button label="Guardar" id="btnGuardar"
+				iconSclass="z-icon-check" class="btn btn-primary  btn-footer" />
+		</div>
+	</window>
+</zk>

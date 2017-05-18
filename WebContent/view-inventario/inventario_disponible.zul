@@ -1,0 +1,50 @@
+<zk>
+	<window title="Inventario Disponible" border="none" height="100%"
+		width="100%"
+		apply="com.portal.control.inventario.WdwInventarioDisponible"
+		id="wdwInventarioDisponible" class="panel-default">
+		<grid width="100%" sclass="grid-sin-borde">
+			<columns>
+				<column width="150px" />
+				<column width="250px" />
+			</columns>
+			<rows>
+				<row>
+					<label value="Empresa" />
+					<combobox id="cmbEmpresa" value="- Seleccione -"
+						readonly="true" />
+				</row>
+				<row>
+					<label value="Periodo" />
+					<textbox id="txtPeriodo" class="form-control"
+						readonly="true" />
+				</row>
+			</rows>
+		</grid>
+		<separator height="10px" />
+		<listbox id="ltbInventario" multiple="false">
+			<custom-attributes org.zkoss.zul.nativebar="true" />
+			<listhead>
+				<listheader label="Código" width="10%" />
+				<listheader label="Descripción" width="25%" />
+				<listheader label="Tipo Producto" width="20%" />
+				<listheader label="Unidad de Medida" width="15%" />
+				<listheader label="Marca" width="15%" />
+				<listheader label="Existencia" width="15%" />
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="${each.cod_producto}" />
+					<listcell label="${each.producto}" />
+					<listcell label="${each.tipo_producto}" />
+					<listcell label="${each.unidad_medida}" />
+					<listcell label="${each.marca}" />
+					<listcell label="${each.inv_existencia}"
+						style="text-align:right" />
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>
+
+

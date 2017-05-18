@@ -1,0 +1,55 @@
+<?link rel="stylesheet" type="text/css" href="/bootstrap/v3/bootstrap/css/bootstrap.min.css" ?>
+<?link rel="stylesheet" type="text/css" href="/css/style.css" ?>
+<?link rel="stylesheet" type="text/css" href="/css/menu.css" ?>
+<?link rel="stylesheet" type="text/css" href="/css/inputs.css" ?>
+<?link rel="stylesheet" type="text/css" href="/css/grid.css" ?>
+<?link rel="stylesheet" type="text/css" href="/css/message.css" ?>
+<zk>
+	<borderlayout hflex="1" vflex="1"
+		apply="com.portal.control.seguridad.WdwPrincipal">
+		<north height="60px" border="none">
+			<div hflex="1" vflex="1" sclass="banner" height="45px">
+
+				<hbox hflex="1" vflex="1" align="center">
+					<image src="../iconos/logo-barra.png" height="45px" />
+					<div width="400px">
+						<label value="Portal de Facturación Digital"
+							sclass="banner-head" />
+					</div>
+					<div align="center center">
+						<label id="lblFecha"
+							value="21 de marzo de 2017" />
+					</div>
+					<hbox apply="" hflex="1" vflex="1" pack="end"
+						align="end">
+						<menubar width="200px"
+							style="background:transparent; border:none;" height="100%">
+							<menu width="100%" height="100%"
+								style="background:transparent; font-color:white; font-size: 50px !important"
+								id="menuUsuario" image="/iconos/64x64/15.png">
+								<menupopup>
+									<menuitem id="lblConf"
+										label="Configuración" image="/iconos/64x64/42.png" />
+									<menuitem id="itPerfil"
+										label="Perfil" image="/iconos/64x64/3.png" />
+									<menuseparator></menuseparator>
+									<menuitem id="lblLogout"
+										label="Logout" image="/iconos/64x64/5.png" />
+								</menupopup>
+							</menu>
+						</menubar>
+					</hbox>
+				</hbox>
+			</div>
+		</north>
+		<west flex="true" splittable="false" collapsible="true"
+			title="Menú Principal">
+			<include src="layout/menu.zul" />
+		</west>
+		<center id="mainContent" autoscroll="true" border="none"
+			self="@insert(content)">
+			<include id="mainInclude" self="@define(content)"
+				apply="com.portal.control.seguridad.MenuOpciones" />
+		</center>
+	</borderlayout>
+</zk>

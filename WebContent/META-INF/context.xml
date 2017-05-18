@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE xml>
+<!-- The contents of this file will be loaded for each web application -->
+<Context>
+
+	<WatchedResource>WEB-INF/web.xml</WatchedResource>
+	<WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+
+	<!-- Connection Pools -->
+
+	<Resource name="PORTAL_ORACLE" auth="Container" type="javax.sql.DataSource"
+		url="jdbc:oracle:thin:@localhost:1521:xe" driverClassName="oracle.jdbc.driver.OracleDriver"
+		username="proyectodb" password="proyectodb" maxTotal="20" maxIdle="3"
+		maxWaitMillis="10000" poolPreparedStatements="true"
+		maxOpenPreparedStatements="100" validationQuery="SELECT SYSDATE FROM DUAL" />
+
+	<Resource name="PORTAL" auth="Container" type="javax.sql.DataSource"
+		url="jdbc:postgresql://localhost:5432/portal" driverClassName="org.postgresql.Driver"
+		username="developer" password="developer" maxTotal="20" maxIdle="3"
+		maxWaitMillis="10000" poolPreparedStatements="true"
+		maxOpenPreparedStatements="100" validationQuery="SELECT current_date" />
+
+
+
+</Context>

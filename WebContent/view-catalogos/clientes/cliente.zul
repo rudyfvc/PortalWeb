@@ -1,0 +1,99 @@
+<zk>
+	<window title="Cliente" border="normal" mode="modal" id="wdwCliente"
+		width="750px" apply="com.portal.control.catalogos.WdwCliente"
+		closable="true" class="panel-default">
+		<div width="100%">
+			<div width="100%" align="left">
+				<groupbox>
+					<caption label="Datos Generales" />
+					<grid class="grid-sin-borde">
+						<columns>
+							<column width="20%" />
+							<column width="80%" />
+							<column width="20%" />
+							<column width="80%" />
+						</columns>
+						<rows>
+							<row>
+								<label value="Código" />
+								<textbox readonly="true" id="txtCodigo"
+									class="form-control" />
+								<label value="Tipo de Cliente" />
+								<combobox id="cmbTipoCliente"
+									readonly="true" value="- Seleccione -" />
+							</row>
+							<row>
+								<label value="Nombres" />
+								<textbox id="txtNombres" maxlength="50"
+									class="form-control" />
+								<label value="Apellidos" />
+								<textbox id="txtApellidos"
+									maxlength="50" class="form-control" />
+							</row>
+							<row>
+								<label value="NIT" />
+								<textbox id="txtNit" maxlength="15"
+									class="form-control" />
+							</row>
+							<row>
+								<label value="DPI" />
+								<textbox id="txtDpi"
+									class="form-control" maxlength="13" />
+							</row>
+							<row>
+								<label value="Pasaporte" />
+								<textbox id="txtPasaporte"
+									class="form-control" maxlength="20" />
+							</row>
+							<row>
+								<label value="Patente de Comercio" />
+								<textbox id="txtPatenteComercio"
+									class="form-control" maxlength="50" />
+								<label value="Registro Fiscal" />
+								<textbox id="txtRegistroFiscal"
+									class="form-control" maxlength="50" />
+							</row>
+							<row>
+								<label value="Correo Electrónico" />
+								<textbox id="txtCorreoElectronico"
+									class="form-control" maxlength="25" />
+								<label value="Dirección" />
+								<textbox id="txtDireccion"
+									multiline="true" rows="3" maxlength="200" class="form-control" />
+							</row>
+							<row>
+								<label value="Teléfono Fijo" />
+								<intbox id="txtTelefonoFijo"
+									class="form-control" maxlength="8" />
+								<label value="Teléfono Móvil" />
+								<intbox id="txtTelefonoCelular"
+									class="form-control" maxlength="8" />
+							</row>
+							<row>
+								<label value="Estado" />
+								<combobox id="cmbEstado" readonly="true"
+									disabled="true">
+									<attribute name="onCreate">
+	self.setSelectedIndex(0);
+</attribute>
+									<comboitem label="ACTIVO" value="1" />
+									<comboitem label="INACTIVO"
+										value="0" />
+
+								</combobox>
+							</row>
+						</rows>
+					</grid>
+				</groupbox>
+			</div>
+		</div>
+		<div class=" col-xs-12 separador" />
+		<div align="right">
+			<button label="Cancelar" id="btnCancelar"
+				onClick="wdwCliente.detach()" iconSclass="z-icon-times"
+				class="btn btn-warning btn-footer" />
+			<button label="Guardar" id="btnGuardar"
+				iconSclass="z-icon-check" class="btn btn-primary  btn-footer" />
+		</div>
+	</window>
+</zk>

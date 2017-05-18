@@ -1,0 +1,15 @@
+<zk>
+    <style>
+    .mymenu .z-menu-text {
+        color: blue;
+    }
+    </style>
+    <menubar id="menubar" hflex="min">
+        <menu label="Custom Style" sclass="mymenu">
+            <!-- omitted -->
+        </menu>
+        <menu label="Default Style">
+            <!-- omitted -->
+        </menu>
+    </menubar>
+</zk>

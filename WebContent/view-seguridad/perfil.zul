@@ -1,0 +1,38 @@
+<zk>
+	<window title="Perfil" border="normal" mode="modal" id="wdwPerfil"
+		width="450px" apply="com.portal.control.seguridad.WdwPerfil"
+		class="panel-default" closable="true">
+		<div>
+			<grid>
+				<columns>
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="Nombre Perfil" />
+						<textbox id="txtNombrePerfil"
+							class="form-control" maxlength="20"
+							constraint="no empty: Nombre de perfil requerido" />
+					</row>
+				</rows>
+			</grid>
+			<div>
+				<tree id="treeOpciones" multiple="true" checkmark="true"
+					onSelect="">
+					<treecols>
+						<treecol label="Opciones" />
+					</treecols>
+				</tree>
+			</div>
+		</div>
+		<div class=" col-xs-12 separador" />
+		<div align="right">
+			<button label="Cancelar" id="btnCancelar"
+				iconSclass="z-icon-times" class="btn btn-warning"
+				onClick="wdwPerfil.detach()" />
+			<button label="Guardar" id="btnGuardar"
+				iconSclass="z-icon-check" class="btn btn-primary" />
+		</div>
+	</window>
+</zk>

@@ -1,0 +1,41 @@
+<zk>
+	<window title="Perfiles" border="none" height="100%" width="100%"
+		apply="com.portal.control.seguridad.WdwPerfiles" id="wdwPerfiles"
+		class="panel-default">
+		<vlayout>
+			<button id="btnAgregar" label="Crear Perfil" width="200px"
+				class="btn btn-success" iconSclass="z-icon-plus" />
+		</vlayout>
+		<separator height="25px" />
+		<listbox id="ltbPerfiles" multiple="false" vflex="1">
+			<custom-attributes org.zkoss.zul.nativebar="true" />
+			<listhead>
+				<listheader label="Código" width="30%" />
+				<listheader label="Nombre" width="35%" />
+				<listheader label="Estado" width="30%" />
+				<listheader width="5%" />
+				<listheader width="5%" />
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="${each.cod_perfil}" />
+					<listcell label="${each.per_nombre}" />
+					<listcell label="${each.per_estado}" />
+					<listcell>
+						<button iconSclass="z-icon-edit"
+							forward="onClick=wdwPerfiles.onUpdateItem(${each})"
+							class="btn-success" />
+					</listcell>
+					<listcell>
+						<button iconSclass="z-icon-times"
+							forward="onClick=wdwPerfiles.onHabilitarItem(${each})"
+							class="btn-danger" />
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+
+</zk>
+
+

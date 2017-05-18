@@ -1,0 +1,172 @@
+<zk>
+	<window title="Venta" border="normal" mode="modal" id="wdwVenta"
+		width="850px" apply="com.portal.control.egresos.WdwVenta"
+		closable="true" class="panel-default">
+		<label id="now" />
+		<timer id="timer" delay="1000" repeats="true" />
+		<grid class="fgrid">
+			<columns>
+				<column width="30%" />
+				<column width="70%" />
+				<column width="30%" />
+				<column width="70%" />
+				<column width="30%" />
+				<column width="70%" />
+			</columns>
+			<rows>
+				<row>
+					<label value="Empresa" />
+					<combobox value="- Seleccione -" readonly="true"
+						id="cmbEmpresa" disabled="true" />
+					<label value="Periodo" />
+					<textbox id="txtPeriodo" class="form-control"
+						readonly="true" disabled="true" />
+					<label value="Fecha" />
+					<datebox readonly="true" id="txtFecha" />
+				</row>
+				<row>
+					<label value="Tipo" />
+					<textbox class="form-control" id="txtTipo"
+						disabled="true" />
+					<label value="Serie" />
+					<textbox class="form-control" id="txtSerie"
+						disabled="true" />
+					<label value="Número" />
+					<textbox class="form-control" id="txtNumero"
+						disabled="true" />
+				</row>
+				<row>
+					<label value="NIT" />
+					<textbox class="form-control" maxlength="15"
+						id="txtNit" />
+					<cell>
+						<label value="Cliente" />
+					</cell>
+					<cell colspan="3">
+						<textbox readonly="true" id="txtCliente"
+							disabled="true" class="form-control" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+		<div class=" col-xs-12 separador" />
+		<div class="clearfix" />
+		<grid class="fgrid">
+			<columns>
+				<column width="30%" />
+				<column width="70%" />
+				<column width="30%" />
+				<column width="70%" />
+				<column width="30%" />
+				<column width="70%" />
+			</columns>
+			<rows>
+				<row>
+					<cell>
+						<label value="Código Producto" />
+					</cell>
+					<cell>
+						<textbox class="form-control"
+							id="txtCodProducto" />
+					</cell>
+					<cell>
+						<label value="Producto" />
+					</cell>
+					<cell colspan="3">
+						<textbox readonly="true" id="txtProducto"
+							class="form-control" />
+					</cell>
+				</row>
+				<row>
+					<label value="Marca" />
+					<textbox class="form-control" id="txtMarca"
+						disabled="true" />
+					<label value="Unidad Medida" />
+					<textbox class="form-control" id="txtUnidadMedida"
+						disabled="true" />
+					<label value="Cantidad" />
+					<intbox class="form-control format-cantidad"
+						id="txtCantidad" maxlength="5" />
+				</row>
+			</rows>
+		</grid>
+
+		<separator height="25px" />
+		<listbox id="ltbDetalle" multiple="false" mold="paging"
+			pageSize="5">
+			<custom-attributes org.zkoss.zul.nativebar="true" />
+			<listhead>
+				<listheader label="Código" width="10%" />
+				<listheader label="Descripción" width="35%" />
+				<listheader label="Cantidad" width="10%" />
+				<listheader label="Precio U." width="10%" />
+				<listheader label="SubTotal" width="10%" />
+				<listheader label="Descuento" width="10%" />
+				<listheader label="Total" width="10%" />
+				<listheader label="" width="5%" />
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="${each.cod_producto}" />
+					<listcell label="${each.producto}" />
+					<listcell label="${each.cantidad}"
+						class="format-cantidad" />
+					<listcell label="${each.doc_monto_unitario}"
+						class="format-cantidad" />
+					<listcell label="${each.doc_monto_gravado}"
+						class="format-moneda" />
+					<listcell label="${each.doc_monto_descuento}"
+						class="format-moneda" />
+					<listcell label="${each.doc_monto_total}"
+						class="format-moneda" />
+					<listcell>
+						<button iconSclass="z-icon-minus"
+							forward="onClick=wdwVenta.onRemoverItem(${each})"
+							class="btn-primary" />
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+		<separator height="10px" />
+		<div align="right">
+			<grid class="fgrid" width="30%">
+				<columns>
+					<column width="30%" />
+					<column width="70%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="SubTotal" />
+						<cell class="resumen-monto">
+							<label id="lblSubTotal" value="0.00"
+								class="resumen-monto" />
+						</cell>
+					</row>
+					<row>
+						<label value="Descuento" />
+						<cell class="resumen-monto">
+							<label id="lblDescuento" value="0.00"
+								class="resumen-monto" />
+						</cell>
+					</row>
+					<row>
+						<label value="Total" />
+						<cell class="resumen-monto">
+							<label id="lblTotal" value="0.00"
+								class="resumen-monto" />
+
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</div>
+		<div class=" col-xs-12 separador" />
+		<div align="right">
+			<button label="Cancelar" id="btnCancelar"
+				iconSclass="z-icon-times" class="btn btn-warning btn-footer" />
+			<button label="Guardar" id="btnGuardar"
+				iconSclass="z-icon-check" class="btn btn-primary  btn-footer" />
+		</div>
+
+	</window>
+</zk>

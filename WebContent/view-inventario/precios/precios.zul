@@ -1,0 +1,57 @@
+<zk>
+	<window title="Productos Disponibles" border="none" height="100%"
+		width="100%" apply="com.portal.control.inventario.WdwPrecios"
+		id="wdwPrecios" class="panel-default">
+		<grid width="100%" sclass="grid-sin-borde">
+			<columns>
+				<column width="250px" />
+				<column width="150px" />
+			</columns>
+			<rows>
+				<row>
+					<cell>
+						<intbox placeholder="Filtro por código"
+							id="txtCodigoProducto" class="form-control" maxlength="10" />
+					</cell>
+					<cell rowspan="2" width="100%" height="100%"
+						align="center" valign="center">
+						<button id="btnFiltrar" label="Filtrar"
+							width="100%" height="100%" class="btn btn-primary" />
+					</cell>
+				</row>
+				<row>
+					<textbox placeholder="Filtro por nombre"
+						id="txtNombreProducto" class="form-control" />
+				</row>
+			</rows>
+		</grid>
+		<listbox id="ltbProductos" multiple="false" vflex="1"
+			sclass="form-control" mold="paging" pageSize="15">
+			<custom-attributes org.zkoss.zul.nativebar="true" />
+			<listhead>
+				<listheader label="Código" width="15%" />
+				<listheader label="Descripción" width="15%" />
+				<listheader label="Tipo Producto" width="15%" />
+				<listheader label="Marca" width="15%" />
+				<listheader label="Unidad Medida" width="15%" />
+				<listheader label="Estado" width="15%" />
+				<listheader width="10%" />
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="${each.cod_producto}" />
+					<listcell label="${each.producto}" />
+					<listcell label="${each.tipo_producto}" />
+					<listcell label="${each.marca}" />
+					<listcell label="${each.unidad_medida}" />
+					<listcell label="${each.estado}" />
+					<listcell>
+						<button iconSclass="z-icon-edit"
+							forward="onClick=wdwPreciosProducto.onUpdateItem(${each})"
+							class="btn-success" />
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

@@ -1,0 +1,22 @@
+.z-messagebox-window {
+	width: 350px !important;
+	height: 150px !important;
+	background: #00527a !important;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00527a+0,40a9c6+100 */
+	background: #00527a !important; /* Old browsers */
+	background: -moz-linear-gradient(top, #00527a 0%, #40a9c6 100%)
+		!important; /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #00527a 0%, #40a9c6 100%)
+		!important; /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #00527a 0%, #40a9c6 100%)
+		!important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00527a',
+		endColorstr='#40a9c6', GradientType=0) !important; /* IE6-9 */
+}
+
+.z-messagebox-window .z-window-header {
+	font-size: 15px !important;
+	padding: 3px 10px 5px 10px;
+	color: #FFF;
+	background-color: #03303E;
+}

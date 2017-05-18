@@ -1,0 +1,33 @@
+<zk>
+	<window title="Cierre de Periodo por empresa" border="normal"
+		apply="com.portal.control.periodo.WdwCierrePeriodo"
+		class="panel-default" height="100%" id="wdwAsignacionPeriodo">
+		<grid class="fgrid">
+			<columns>
+				<column width="30%" />
+				<column width="70%" />
+				<column width="30%" />
+				<column width="70%" />
+				<column width="30%" />
+				<column width="70%" />
+			</columns>
+			<rows>
+				<row>
+					<label value="Empresa" />
+					<combobox id="cmbEmpresa" readonly="true"
+						value="- Seleccione -" />
+				</row>
+				<row>
+					<label value="Periodo Actual" />
+					<textbox id="txtPeriodo" class="form-control"
+						readonly="true" />
+				</row>
+				<row>
+					<label value="" />
+					<button id="btnCerrar" class="btn-primary"
+						width="100%" label="Cerrar Periodo" height="35px" />
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

@@ -1,0 +1,48 @@
+<zk>
+	<window title="Clientes" border="none" height="100%" width="100%"
+		apply="com.portal.control.catalogos.WdwClientes" id="wdwClientes"
+		class="panel-default">
+		<grid width="100%" sclass="grid-sin-borde">
+			<columns>
+				<column width="250px" />
+				<column width="150px" />
+			</columns>
+			<rows>
+				<row>
+					<button id="btnAgregar" label="Nuevo Cliente"
+						width="100%" class="btn btn-success" iconSclass="z-icon-plus" />
+					<label></label>
+
+				</row>
+			</rows>
+		</grid>
+		<listbox id="ltbClientes" multiple="false" vflex="1"
+			sclass="form-control">
+			<custom-attributes org.zkoss.zul.nativebar="true" />
+			<listhead>
+				<listheader label="Código" width="15%" />
+				<listheader label="Nombre" width="15%" />
+				<listheader label="NIT" width="15%" />
+				<listheader label="Dirección" width="15%" />
+				<listheader label="Tipo" width="15%" />
+				<listheader width="5%" />
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="${each.cod_cliente}" />
+					<listcell label="${each.nombres}" />
+					<listcell label="${each.nit}" />
+					<listcell label="${each.direccion}" />
+					<listcell label="${each.tipo_entidad}" />
+					<listcell>
+						<button iconSclass="z-icon-edit"
+							forward="onClick=wdwClientes.onUpdateItem(${each})"
+							class="btn-success" />
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>
+
+

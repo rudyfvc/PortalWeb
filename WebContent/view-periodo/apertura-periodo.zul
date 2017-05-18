@@ -1,0 +1,40 @@
+<zk>
+	<window title="Apertura de Periodo por empresa" border="normal"
+		apply="com.portal.control.periodo.WdwAperturaPeriodo"
+		class="panel-default" height="100%" id="wdwAperturaPeriodo">
+		<grid class="fgrid">
+			<columns>
+				<column width="30%" />
+				<column width="70%" />
+				<column width="30%" />
+				<column width="70%" />
+				<column width="30%" />
+				<column width="70%" />
+			</columns>
+			<rows>
+				<row>
+					<label value="Empresa" />
+					<combobox id="cmbEmpresa" readonly="true"
+						value="- Seleccione -" />
+				</row>
+				<row>
+					<label value="Último Periodo" />
+					<textbox id="txtUltimoPeriodo" class="form-control"
+						readonly="true" />
+					<textbox id="txtEstadoUltimoPeriodo"
+						class="form-control" readonly="true" />
+				</row>
+				<row>
+					<label value="Periodo Aperturar" />
+					<combobox id="cmbSiguientePeriodo" readonly="true"
+						value="- Seleccione -" />
+				</row>
+				<row>
+					<label value="" />
+					<button id="btnAceptar" class="btn-primary"
+						width="100%" label="Aperturar Periodo" height="35px" />
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

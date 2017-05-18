@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Created by ZK Studio -->
+
+<zk>
+	<device-config>
+		<device-type>ajax</device-type>
+		<timeout-uri>/timeout.zul</timeout-uri><!-- An empty URL can cause the 
+			browser to reload the same URL -->
+	</device-config>
+
+
+	<library-property>
+		<name>org.zkoss.theme.preferred</name>
+		<value>bootstrap</value>
+
+	</library-property>
+
+	<library-property>
+		<name>org.zkoss.zul.progressbox.position</name>
+		<value>center,center</value>
+	</library-property>
+
+	<library-property>
+		<name>org.zkoss.zul.tree.checkmarkDeselectOthers</name>
+		<value>true</value>
+	</library-property>
+
+	<library-property>
+		<name>org.zkoss.zul.theme.fontFamilyT</name>
+		<value>Verdana</value>
+	</library-property>
+	<library-property>
+		<name>org.zkoss.zul.theme.fontFamilyC</name>
+		<value>Verdana</value>
+	</library-property>
+</zk>

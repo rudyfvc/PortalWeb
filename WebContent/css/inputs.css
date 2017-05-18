@@ -1,0 +1,117 @@
+/*  COMBOBOX   */
+.z-combobox {
+	display: block;
+	margin: 0;
+}
+
+.z-combobox-input {
+	height: 34px;
+	width: 85% !important;
+	font-weight: normal;
+	padding: 0 15px;
+	margin: 0px 0px 6px 0px !important;
+}
+
+.z-combobox-button {
+	height: 34px;
+	border-color: #00527A;
+	width: 15%;
+	padding-left: 3px;
+	padding-top: 0;
+	color: #ffffff;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00527a+0,00527a+100 */
+	background: #00527a; /* Old browsers */
+	background: -moz-linear-gradient(top, #00527a 0%, #00527a 100%);
+	/* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #00527a 0%, #00527a 100%);
+	/* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #00527a 0%, #00527a 100%);
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00527a',
+		endColorstr='#00527a', GradientType=0); /* IE6-9 */
+	font-size: 19px;
+	text-align: center;
+	margin-top: -6px;
+}
+
+.z-combobox-button:hover, .z-combobox-button:focus, .z-combobox-button:active
+	{
+	color: #fff;
+	background-color: #007EBB !important;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#007ebb+0,007ebb+100 */
+	background: #007ebb !important; /* Old browsers */
+	background: -moz-linear-gradient(top, #007ebb 0%, #007ebb 100%)
+		!important; /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #007ebb 0%, #007ebb 100%)
+		!important; /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #007ebb 0%, #007ebb 100%)
+		!important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007ebb',
+		endColorstr='#007ebb', GradientType=0) !important; /* IE6-9 */
+	border-color: #66afe9 !important;
+	background-position: center, center !important;
+}
+
+.z-combobox-input:focus, .z-combobox-input:active {
+	border-color: #66afe9 !important;
+}
+
+
+
+/*  DATEBOX   */
+.z-datebox {
+	display: block;
+	margin: 0;
+}
+
+.z-datebox-input {
+	height: 34px;
+	width: 85% !important;
+	font-weight: normal;
+	padding: 0 15px;
+	margin: 0px 0px 6px 0px !important;
+}
+
+.z-datebox-button {
+	height: 34px;
+	border-color: #00527A;
+	width: 15%;
+	padding-left: 3px;
+	padding-top: 0;
+	color: #ffffff;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00527a+0,00527a+100 */
+	background: #00527a; /* Old browsers */
+	background: -moz-linear-gradient(top, #00527a 0%, #00527a 100%);
+	/* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #00527a 0%, #00527a 100%);
+	/* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #00527a 0%, #00527a 100%);
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00527a',
+		endColorstr='#00527a', GradientType=0); /* IE6-9 */
+	font-size: 19px;
+	text-align: center;
+	margin-top: -6px;
+}
+
+.z-datebox-button:hover, .z-datebox-button:focus, .z-datebox-button:active
+	{
+	color: #fff;
+	background-color: #007EBB !important;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#007ebb+0,007ebb+100 */
+	background: #007ebb !important; /* Old browsers */
+	background: -moz-linear-gradient(top, #007ebb 0%, #007ebb 100%)
+		!important; /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #007ebb 0%, #007ebb 100%)
+		!important; /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #007ebb 0%, #007ebb 100%)
+		!important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007ebb',
+		endColorstr='#007ebb', GradientType=0) !important; /* IE6-9 */
+	border-color: #66afe9 !important;
+	background-position: center, center !important;
+}
+
+.z-datebox-input:focus, .z-datebox-input:active {
+	border-color: #66afe9 !important;
+}

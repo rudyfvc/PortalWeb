@@ -1,0 +1,108 @@
+<zk>
+
+	<window title="Resoluciones de Facturación" border="none"
+		height="100%" width="100%"
+		apply="com.portal.control.configuraciones.WdwResoluciones"
+		id="wdwResoluciones" class="panel-default">
+		<hbox widths="30%,70%">
+
+			<grid sclass="fgrid">
+				<columns>
+					<column width="30%" />
+					<column width="70%" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Empresa" />
+						<combobox id="cmbEmpresa" value="- Seleccione -"
+							readonly="true" />
+					</row>
+					<row>
+						<cell colspan="2">
+							<div class=" col-xs-12 separador" />
+						</cell>
+					</row>
+					<row>
+						<label value="Resolución" />
+						<textbox id="txtResolucion"
+							class="form-control" />
+					</row>
+					<row>
+						<label value="Resolución" />
+						<datebox id="txtFechaResolucion"
+							readonly="true" />
+					</row>
+					<row>
+						<label value="Tipo" />
+						<combobox id="cmbTipoDocumento" readonly="true"
+							value="- Seleccione uno -" />
+					</row>
+					<row>
+						<label value="Serie" />
+						<textbox id="txtSerie" class="form-control"
+							maxlength="15" />
+					</row>
+					<row>
+						<label value="Número Inicial" />
+						<textbox id="txtNumeroInicial"
+							class="form-control  format-cantidad" maxlength="10" />
+					</row>
+					<row>
+						<label value="Número Final" />
+						<textbox id="txtNumeroFinal"
+							class="form-control format-cantidad" maxlength="10" />
+					</row>
+
+					<row>
+						<label value="Estado" />
+						<combobox id="cmbEstado" readonly="true"
+							value="- Seleccione uno -" />
+					</row>
+					<row>
+						<label />
+						<button id="btnAceptar" class="btn btn-primary"
+							width="100%" label="Aceptar" />
+					</row>
+					<row>
+						<label />
+						<button id="btnCancelar" class="btn btn-primary"
+							width="100%" label="Cancelar Operación" />
+					</row>
+				</rows>
+			</grid>
+			<vbox>
+				<listbox id="ltbResoluciones" multiple="false">
+					<custom-attributes org.zkoss.zul.nativebar="true" />
+					<listhead>
+						<listheader label="Resolución" width="20%" />
+						<listheader label="Fecha" width="15%" />
+						<listheader label="Estado" width="15%" />
+						<listheader label="Tipo" width="10%" />
+						<listheader label="Serie" width="10%" />
+						<listheader label="Del" width="10%" />
+						<listheader label="Al" width="10%" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="${each.resolucion}" />
+							<listcell label="${each.fecha_resolucion}" />
+							<listcell label="${each.estado}" />
+							<listcell label="${each.doc_tipo}" />
+							<listcell label="${each.doc_serie}" />
+							<listcell label="${each.doc_numero_inicial}"
+								class="format-cantidad" />
+							<listcell label="${each.doc_numero_final}"
+								class="format-cantidad" />
+						</listitem>
+					</template>
+				</listbox>
+				<div align="right">
+					<button id="btnGenerarCorrelativos"
+						label="Generar Correlativos" class="btn btn-primary" />
+				</div>
+			</vbox>
+		</hbox>
+	</window>
+</zk>
+
+

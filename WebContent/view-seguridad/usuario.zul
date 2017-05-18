@@ -1,0 +1,105 @@
+<zk>
+	<window title="Usuario" border="normal" mode="modal" id="wdwUsuario"
+		width="450px" apply="com.portal.control.seguridad.WdwUsuario"
+		closable="true" class="panel-default">
+		<div>
+			<groupbox>
+				<caption label="Datos Generales" />
+				<grid class="grid-sin-borde">
+					<columns>
+						<column />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<label value="Usuario" />
+							<textbox id="txtUsuario"
+								class="form-control" maxlength="20"
+								constraint="no empty: Usuario requerido" />
+						</row>
+						<row>
+							<label value="Nombres" />
+							<textbox id="txtNombres"
+								class="form-control" maxlength="50"
+								constraint="no empty: Nombres del Usuario es requerido" />
+						</row>
+						<row>
+							<label value="Apellidos" />
+							<textbox id="txtApellido"
+								class="form-control" maxlength="50"
+								constraint="no empty: Apellidos de usuario requerido." />
+						</row>
+						<row>
+							<label value="Email" />
+							<textbox id="txtEmail" class="form-control"
+								maxlength="50" />
+						</row>
+						<row>
+							<label value="Perfil" />
+							<combobox id="cmbPerfil"
+								value="- Seleccione -">
+								<template name="model">
+									<comboitem value="${each}"
+										label="${each.per_nombre}" />
+								</template>
+							</combobox>
+						</row>
+					</rows>
+				</grid>
+
+			</groupbox>
+			<groupbox>
+				<caption label="Asignación de Empresas" />
+				<grid class="grid-sin-borde">
+					<columns>
+						<column />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<label value="Empresa" />
+							<combobox id="cmbEmpresa"
+								value="- Seleccione -">
+								<template name="model">
+									<comboitem value="${each}"
+										label="${each.emp_nombre}" />
+								</template>
+							</combobox>
+						</row>
+						<row>
+							<label value="" />
+							<button id="btnAgregarEmpresa"
+								label="Agregar" class="btn btn-success" width="100%"
+								height="35px" />
+						</row>
+					</rows>
+				</grid>
+				<listbox id="ltbEmpresasAsignadas">
+					<listhead>
+						<listheader label="Empresa" width="100%" />
+					</listhead>
+					<template name="model">
+						<listitem label="${each.emp_nombre}"
+							value="${each}" />
+					</template>
+				</listbox>
+				<separator height="15px" />
+				<div align="right">
+					<button id="btnRemoverEmpresa" label="Remover"
+						class="btn btn-warning" width="50%" height="35px" />
+				</div>
+
+			</groupbox>
+		</div>
+		<div class=" col-xs-12 separador" />
+		<div align="right">
+			<button label="Cancelar" id="btnCancelar"
+				iconSclass="z-icon-times" class="btn btn-warning btn-footer" />
+			<button label="Guardar" id="btnGuardar"
+				iconSclass="z-icon-check" class="btn btn-primary  btn-footer" />
+		</div>
+
+
+
+	</window>
+</zk>

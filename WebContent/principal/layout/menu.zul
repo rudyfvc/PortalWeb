@@ -1,0 +1,5 @@
+<div>
+	<menubar id="menubar" orient="vertical"
+		apply="com.portal.control.seguridad.MenuOpciones" width="200px">
+	</menubar>
+</div>

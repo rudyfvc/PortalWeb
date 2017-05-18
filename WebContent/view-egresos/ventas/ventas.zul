@@ -1,0 +1,68 @@
+<zk>
+
+	<window title="Ventas Realizadas" border="none" height="100%"
+		width="100%" apply="com.portal.control.egresos.WdwVentas"
+		id="wdwVentas" class="panel-default">
+		<grid width="100%" sclass="grid-sin-borde">
+			<columns>
+				<column width="150px" />
+				<column width="250px" />
+			</columns>
+			<rows>
+				<row>
+					<label value="Empresa" />
+					<combobox id="cmbEmpresa" value="- Seleccione -"
+						readonly="true" />
+				</row>
+				<row>
+					<label value="Periodo" />
+					<combobox id="cmbPeriodo" value="- Seleccione -"
+						readonly="true" />
+				</row>
+			</rows>
+		</grid>
+		<div align="right">
+			<button id="btnAgregar" label="Venta" width="150px"
+				class="btn btn-primary" iconSclass="z-icon-plus" />
+		</div>
+		<separator height="10px" />
+		<listbox id="ltbSalidas" multiple="false">
+			<custom-attributes org.zkoss.zul.nativebar="true" />
+			<listhead>
+				<listheader label="Tipo" width="10%" />
+				<listheader label="Serie" width="10%" />
+				<listheader label="Número" width="10%" />
+				<listheader label="Cliente" width="25%" />
+				<listheader label="Estado" width="10%" />
+				<listheader label="Subtotal" width="10%" />
+				<listheader label="Descuento" width="10%" />
+				<listheader label="Total" width="10%" />
+				<listheader label="" width="5%" />
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="${each.doc_tipo}" />
+					<listcell label="${each.doc_serie}" />
+					<listcell label="${each.doc_numero}" />
+					<listcell label="${each.cliente}" />
+					<listcell label="${each.doc_estado}" />
+					<listcell label="${each.doc_monto_gravado} "
+						class="format-moneda" />
+					<listcell label="${each.doc_monto_descuento}"
+						class="format-moneda" />
+					<listcell label="${each.doc_monto_total}"
+						class="format-moneda" />
+					<listcell>
+						<button iconSclass="z-icon-edit"
+							forward="onClick=wdwVentas.onUpdateItem(${each})"
+							class="btn-success" />
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+
+	</window>
+
+</zk>
+
+

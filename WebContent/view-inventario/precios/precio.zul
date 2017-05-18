@@ -1,0 +1,71 @@
+<zk>
+	<window title="Configuración de Precios" border="normal"
+		mode="modal" id="wdwProductoPrecio" width="450px"
+		apply="com.portal.control.inventario.WdwPrecio" closable="true"
+		class="panel-default">
+		<div>
+			<groupbox>
+				<caption label="Datos Producto" />
+				<grid class="grid-sin-borde">
+					<columns>
+						<column />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<label value="Producto" />
+							<textbox id="txtProducto"
+								class="form-control" readonly="true" rows="4" multiline="true" />
+						</row>
+						<row>
+							<label value="Tipo Producto" />
+							<textbox id="txtTipoProducto"
+								class="form-control" readonly="true" />
+						</row>
+						<row>
+							<label value="Unidad de Medida" />
+							<textbox id="txtUnidadMedida"
+								class="form-control" readonly="true" />
+						</row>
+						<row>
+							<label value="Marca" />
+							<textbox id="txtMarca" class="form-control"
+								readonly="true" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+			<groupbox>
+				<caption label="Precios y Descuentos" />
+				<grid class="grid-sin-borde">
+					<columns>
+						<column width="45%" />
+						<column width="45%" />
+						<column width="5%" />
+					</columns>
+					<rows>
+						<row>
+							<label value="Precio" />
+							<decimalbox id="txtPrecio"
+								class="form-control format-moneda" maxlength="10" />
+						</row>
+						<row>
+							<label value="Porcentaje descuento" />
+							<decimalbox id="txtDescuento"
+								class="form-control format-moneda" maxlength="10" />
+							<label value="%" />
+						</row>
+					</rows>
+				</grid>
+			</groupbox>
+		</div>
+		<div class=" col-xs-12 separador" />
+		<div align="right">
+			<button label="Cerrar" id="btnCerrar"
+				iconSclass="z-icon-times" class="btn btn-danger btn-footer"
+				onClick="wdwProductoPrecio.detach()" />
+			<button label="Guardar" id="btnGuardar"
+				iconSclass="z-icon-times" class="btn btn-primary btn-footer" />
+		</div>
+	</window>
+</zk>

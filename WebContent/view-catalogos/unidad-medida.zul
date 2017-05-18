@@ -1,0 +1,74 @@
+<zk>
+	<window title="Unidad de Medida" border="none" class="panel-default"
+		apply="com.portal.control.catalogos.WdwUnidadMedida" height=" 100%"
+		id="wdwUnidadMedida">
+		<div align="center">
+			<div width="50%">
+				<groupbox>
+					<caption id="cptAccion" label="Nuevo Item" />
+					<grid sclass="grid-sin-borde">
+						<columns>
+							<column></column>
+							<column></column>
+						</columns>
+						<rows>
+							<row>
+								<label value="Unidad de Medida" />
+								<textbox id="txtUnidadMedida"
+									class="form-control" maxlength="50" />
+							</row>
+							<row>
+								<label></label>
+								<button label="Guardar" width="100%"
+									id="btnGuardar" class="btn btn-success" iconSclass="" />
+							</row>
+
+						</rows>
+					</grid>
+				</groupbox>
+			</div>
+			<separator height="25px" />
+			<div width="75%">
+				<listbox id="ltbUnidadMedida" mold="paging"
+					pageSize="5">
+					<custom-attributes org.zkoss.zul.nativebar="true" />
+					<listhead>
+						<listheader label="Descripción" width="15%" />
+						<listheader label="Estado" width="15%" />
+						<listheader label="Creado por" width="10%" />
+						<listheader label="Fecha creación" width="10%" />
+						<listheader label="Editado por" width="10%" />
+						<listheader label="Fecha edición" width="10%" />
+						<listheader width="10%" />
+						<listheader width="10%" />
+					</listhead>
+					<template name="model">
+						<listitem value="${each}">
+							<listcell label="${each.unidad_medida}" />
+							<listcell label="${each.estado}" />
+							<listcell label="${each.log_insertuser}"
+								style="font-size: 10px" />
+							<listcell label="${each.log_insertdate}"
+								style="font-size: 10px" />
+							<listcell label="${each.log_updatedate}"
+								style="font-size: 10px" />
+							<listcell label="${each.log_updateuser}"
+								style="font-size: 10px" />
+							<listcell>
+								<button iconSclass="z-icon-edit"
+									forward="onClick=wdwUnidadMedida.onUpdateItem(${each})"
+									class="btn-success" />
+							</listcell>
+							<listcell>
+								<button iconSclass="z-icon-times"
+									forward="onClick=wdwUnidadMedida.onHabilitarItem(${each})"
+									class="btn-danger" />
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
+			</div>
+		</div>
+
+	</window>
+</zk>

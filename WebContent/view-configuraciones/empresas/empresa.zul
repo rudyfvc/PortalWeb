@@ -1,0 +1,64 @@
+<zk>
+	<window title="Empresa" border="normal" id="wdwEmpresa"
+		apply="com.portal.control.configuraciones.WdwEmpresa" mode="modal"
+		width="400px" class="panel-default">
+		<grid class="fgrid">
+			<columns>
+				<column label="" />
+				<column label="" />
+			</columns>
+			<rows>
+				<row>
+					<div align="right">
+						<label value="Nombre Empresa" />
+					</div>
+					<textbox id="txtNombreEmpresa" class="form-control"
+						maxlength="50" />
+				</row>
+				<row>
+					<div align="right">
+						<label value="N.I.T." />
+					</div>
+					<textbox id="txtNit" class="form-control"
+						maxlength="20" />
+				</row>
+				<row>
+					<div align="right">
+						<label value="Teléfono" />
+					</div>
+					<intbox id="txtTelefono" class="form-control"
+						maxlength="8" />
+				</row>
+				<row>
+					<div align="right">
+						<label value="Dirección" />
+					</div>
+					<textbox id="txtDireccion" class="form-control"
+						maxlength="50" rows="4" multiline="true" />
+				</row>
+				<row>
+					<div align="right">
+						<label value="Mes Inicial" id="lblMes" />
+					</div>
+					<combobox id="cmbMes" readonly="true"
+						value="- Seleccione -" />
+				</row>
+				<row>
+					<div align="right">
+						<label value="Año" id="lblAnio" />
+					</div>
+					<combobox id="cmbAnio" readonly="true"
+						value="- Seleccione -" />
+				</row>
+			</rows>
+		</grid>
+		<div class=" col-xs-12 separador" />
+		<div align="right">
+			<button label="Cancelar" id="btnCancelar"
+				iconSclass="z-icon-times" class="btn btn-warning btn-footer"
+				onClick="wdwEmpresa.detach();" />
+			<button label="Guardar" id="btnGuardar"
+				iconSclass="z-icon-check" class="btn btn-primary  btn-footer" />
+		</div>
+	</window>
+</zk>

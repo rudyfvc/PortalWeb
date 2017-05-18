@@ -1,0 +1,41 @@
+<?page title="Empresas" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="Empresas" border="none" class="panel-default"
+		apply="com.portal.control.configuraciones.WdwEmpresas" height="100%"
+		id="wdwEmpresas">
+		<div align="right">
+			<button id="btnNuevaEmpresa" label="Nueva Empresa"
+				class="btn btn-success" />
+		</div>
+		<separator height="15px" />
+		<listbox id="ltbEmpresas">
+			<custom-attributes org.zkoss.zul.nativebar="true" />
+			<listhead>
+				<listheader label="Empresa" width="40%" />
+				<listheader label="NIT" width="15%" />
+				<listheader label="Teléfono" width="15%" />
+				<listheader label="Dirección" width="20%" />
+				<listheader width="5%" />
+				<listheader width="5%" />
+			</listhead>
+			<template name="model">
+				<listitem value="${each}">
+					<listcell label="${each.emp_nombre}" />
+					<listcell label="${each.emp_nit}" />
+					<listcell label="${each.emp_telefono}" />
+					<listcell label="${each.emp_direccion}" />
+					<listcell>
+						<button iconSclass="z-icon-edit"
+							forward="onClick=wdwEmpresas.onUpdateItem(${each})"
+							class="btn-success" />
+					</listcell>
+					<listcell>
+						<button iconSclass="z-icon-times"
+							forward="onClick=wdwEmpresas.onHabilitarItem(${each})"
+							class="btn-danger" />
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>
