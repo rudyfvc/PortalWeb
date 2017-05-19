@@ -9,7 +9,7 @@ import com.portal.dto.InventarioDisponibleDTO;
 
 public class PDInventario extends PDAbstract {
 
-	private static final String SQL_GET_INVENTARIO_DISPONIBLE = "select * from fun_get_inventario_disponible(?,?)";
+	private static final String SQL_GET_INVENTARIO_DISPONIBLE = "select * from fun_get_inventario_disponible(?,?) where inv_existencia >0;";
 
 	private static final String SQL_GET_INVENTARIO_DISPONIBLE_PRODUCTO = " select coalesce(fun_get_inv_por_producto(?,?,?),0) as existencia; ";
 

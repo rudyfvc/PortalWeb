@@ -1,0 +1,132 @@
+<zk>
+	<window title="Ajuste de Inventario" border="normal" mode="modal"
+		id="wdwVenta" width="850px"
+		apply="com.portal.control.inventario.WdwAjuste" closable="true"
+		class="panel-default">
+		<grid class="fgrid">
+			<columns>
+				<column width="30%" />
+				<column width="70%" />
+				<column width="30%" />
+				<column width="70%" />
+				<column width="30%" />
+				<column width="70%" />
+			</columns>
+			<rows>
+				<row>
+					<label value="Empresa" />
+					<combobox value="- Seleccione -" readonly="true"
+						id="cmbEmpresa" />
+					<label value="Periodo" />
+					<textbox id="txtPeriodo" class="form-control"
+						readonly="true" disabled="true" />
+					<label value="Fecha" />
+					<datebox readonly="true" id="txtFecha" />
+				</row>
+				<row>
+					<label value="Tipo" />
+					<textbox class="form-control" id="txtTipo"
+						disabled="true" />
+					<label value="Serie" />
+					<textbox class="form-control" id="txtSerie"
+						disabled="true" />
+					<label value="Número" />
+					<textbox class="form-control" id="txtNumero"
+						disabled="true" />
+				</row>
+				<row>
+					<label value="Tipo de Ajuste" />
+					<combobox value="- Seleccione -" readonly="true"
+						id="cmbTipoAjuste">
+						<comboitem value="ENT" label="ENTRADA" />
+						<comboitem value="SAL" label="SALIDA" />
+					</combobox>
+				</row>
+				<row>
+					<cell>
+						<label value="Motivo Ajuste" />
+					</cell>
+					<cell colspan="5">
+						<textbox id="txtMotivoAjuste"
+							class="form-control" multiline="true" rows="4" maxlength="200" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+		<div class=" col-xs-12 separador" />
+		<div class="clearfix" />
+		<grid class="fgrid">
+			<columns>
+				<column width="30%" />
+				<column width="70%" />
+				<column width="30%" />
+				<column width="70%" />
+				<column width="30%" />
+				<column width="70%" />
+			</columns>
+			<rows>
+				<row>
+					<cell>
+						<label value="Código Producto" />
+					</cell>
+					<cell>
+						<textbox class="form-control"
+							id="txtCodProducto" />
+					</cell>
+					<cell>
+						<label value="Producto" />
+					</cell>
+					<cell colspan="3">
+						<textbox readonly="true" id="txtProducto"
+							class="form-control" />
+					</cell>
+				</row>
+				<row>
+					<label value="Marca" />
+					<textbox class="form-control" id="txtMarca"
+						disabled="true" />
+					<label value="Unidad Medida" />
+					<textbox class="form-control" id="txtUnidadMedida"
+						disabled="true" />
+					<label value="Cantidad" />
+					<intbox class="form-control format-cantidad"
+						id="txtCantidad" maxlength="5" />
+				</row>
+			</rows>
+		</grid>
+
+		<separator height="25px" />
+		<listbox id="ltbDetalle" multiple="false" mold="paging"
+			pageSize="5">
+			<custom-attributes org.zkoss.zul.nativebar="true" />
+			<listhead>
+				<listheader label="Código" width="20%" />
+				<listheader label="Descripción" width="55%" />
+				<listheader label="Cantidad" width="20%" />
+				<listheader label="" width="5%" />
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell label="${each.cod_producto}" />
+					<listcell label="${each.producto}" />
+					<listcell label="${each.cantidad}"
+						class="format-cantidad" />
+					<listcell>
+						<button iconSclass="z-icon-minus"
+							forward="onClick=wdwVenta.onRemoverItem(${each})"
+							class="btn-primary" />
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+		<separator height="10px" />
+		<div class=" col-xs-12 separador" />
+		<div align="right">
+			<button label="Cancelar" id="btnCancelar"
+				iconSclass="z-icon-times" class="btn btn-warning btn-footer" />
+			<button label="Guardar" id="btnGuardar"
+				iconSclass="z-icon-check" class="btn btn-primary  btn-footer" />
+		</div>
+
+	</window>
+</zk>

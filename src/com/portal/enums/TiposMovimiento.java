@@ -2,7 +2,7 @@ package com.portal.enums;
 
 public enum TiposMovimiento {
 
-	COMPRA(1), VENTA(2), DEVOLUCION_PROVEEDOR(3), DEVOLUCION_BODEGA(4);
+	COMPRA(1), VENTA(2), AJUSTE(3);
 
 	public final int CODIGO;
 

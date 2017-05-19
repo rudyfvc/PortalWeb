@@ -11,6 +11,7 @@ import com.portal.dto.ResolucionDTO;
 
 public class PDResolucion extends PDAbstract {
 	public static final String TIPO_FACTURA = "FAC";
+	public static final String TIPO_AJUSTE = "AJU";
 
 	private static final String SQL_ADD_RESOLUCION = " insert into pd_resolucion(cod_resolucion,cod_empresa, resolucion,fecha_resolucion,estado,"
 			+ " doc_tipo,doc_serie,doc_numero_inicial, doc_numero_final, doc_numero_actual, log_insertdate, log_insertuser) "

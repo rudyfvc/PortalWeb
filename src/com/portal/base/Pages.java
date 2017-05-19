@@ -25,9 +25,18 @@ public final class Pages {
 	public static final String URL_CLIENTE = URL_VIEW_CATALOGOS
 			+ "/clientes/cliente.zul";
 
-	public static final String URL_COMPRA = URL_VIEW_INGRESOS + "/compra.zul";
+	/******** INGRESOS DE MERCADERÍA *********/
+
+	public static final String URL_COMPRA = URL_VIEW_INGRESOS
+			+ "/compras/compra.zul";
+
 	public static final String URL_CONSULTA_COMPRA = URL_VIEW_INGRESOS
-			+ "/consulta-compra.zul";
+			+ "/compras/consulta-compra.zul";
+
+	public static final String URL_AJUSTE = URL_VIEW_INVENTARIO
+			+ "/ajustes/ajuste.zul";
+
+	/******** FIN INGRESOS DE MERCADERÍA *********/
 
 	public static final String URL_KARDEX = URL_VIEW_INVENTARIO + "/kardex.zul";
 
