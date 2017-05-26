@@ -12,7 +12,7 @@
 			<window id="wdwLogin"
 				apply="com.portal.control.seguridad.WdwLogin"
 				title="Ingrese sus credenciales" border="normal" hflex="min"
-				mode="embedded" class="panel-default">
+				mode="embedded">
 				<vbox hflex="min" align="center">
 					<grid hflex="min" class="grid-sin-borde">
 						<columns>

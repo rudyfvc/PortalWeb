@@ -96,7 +96,7 @@ public class WdwPerfiles extends ComposerBase {
 				if (objPerfil.cambiarEstado(portal, "0",
 						seleccion.getCod_perfil())) {
 					showInformationMessage(nombreOperacion,
-							"Usuario desactivado exitosamente.");
+							"Perfil desactivado exitosamente.");
 					cargarPerfiles();
 				} else {
 					showErrorMessage(nombreOperacion,

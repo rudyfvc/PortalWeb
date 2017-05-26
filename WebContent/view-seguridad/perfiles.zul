@@ -4,7 +4,7 @@
 		class="panel-default">
 		<vlayout>
 			<button id="btnAgregar" label="Crear Perfil" width="200px"
-				class="btn btn-success" iconSclass="z-icon-plus" />
+				class="btn btn-primary" iconSclass="z-icon-plus" />
 		</vlayout>
 		<separator height="25px" />
 		<listbox id="ltbPerfiles" multiple="false" vflex="1">
@@ -24,7 +24,7 @@
 					<listcell>
 						<button iconSclass="z-icon-edit"
 							forward="onClick=wdwPerfiles.onUpdateItem(${each})"
-							class="btn-success" />
+							class="btn-info" />
 					</listcell>
 					<listcell>
 						<button iconSclass="z-icon-times"

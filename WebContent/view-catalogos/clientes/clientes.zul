@@ -10,7 +10,7 @@
 			<rows>
 				<row>
 					<button id="btnAgregar" label="Nuevo Cliente"
-						width="100%" class="btn btn-success" iconSclass="z-icon-plus" />
+						width="100%" class="btn btn-info" iconSclass="z-icon-plus" />
 					<label></label>
 
 				</row>
@@ -37,7 +37,7 @@
 					<listcell>
 						<button iconSclass="z-icon-edit"
 							forward="onClick=wdwClientes.onUpdateItem(${each})"
-							class="btn-success" />
+							class="btn-info" />
 					</listcell>
 				</listitem>
 			</template>

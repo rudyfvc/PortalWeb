@@ -28,7 +28,7 @@
 				<row>
 					<label></label>
 					<button id="btnAgregar" label="Nuevo Usuario"
-						width="100%" class="btn btn-success" iconSclass="z-icon-plus" />
+						width="100%" class="btn btn-primary" iconSclass="z-icon-plus" />
 				</row>
 			</rows>
 		</grid>
@@ -55,7 +55,7 @@
 					<listcell>
 						<button iconSclass="z-icon-edit"
 							forward="onClick=wdwUsuarios.onUpdateItem(${each})"
-							class="btn-success" />
+							class="btn-info" />
 					</listcell>
 					<listcell>
 						<button iconSclass="z-icon-refresh"

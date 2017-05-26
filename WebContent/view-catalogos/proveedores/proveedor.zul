@@ -19,12 +19,12 @@
 								<label value="Código" />
 								<textbox readonly="true" id="txtCodigo"
 									class="form-control" />
-								<label value="Tipo de Proveedor" />
+								<label value="(*) Tipo de Proveedor" />
 								<combobox id="cmbTipoProveedor"
 									readonly="true" value="- Seleccione -" />
 							</row>
 							<row>
-								<label value="Nombres" />
+								<label value="(*) Nombres" />
 								<textbox id="txtNombres" maxlength="50"
 									class="form-control" />
 								<label value="Apellidos" />
@@ -32,7 +32,7 @@
 									maxlength="50" class="form-control" />
 							</row>
 							<row>
-								<label value="NIT" />
+								<label value="(*) NIT" />
 								<textbox id="txtNit" maxlength="15"
 									class="form-control" />
 							</row>
@@ -58,7 +58,7 @@
 								<label value="Correo Electrónico" />
 								<textbox id="txtCorreoElectronico"
 									class="form-control" maxlength="25" />
-								<label value="Dirección" />
+								<label value="(*) Dirección" />
 								<textbox id="txtDireccion"
 									multiline="true" rows="3" maxlength="200" class="form-control" />
 							</row>

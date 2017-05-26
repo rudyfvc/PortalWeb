@@ -20,7 +20,7 @@
 							<row>
 								<label></label>
 								<button label="Guardar" width="100%"
-									id="btnGuardar" class="btn btn-success" iconSclass="" />
+									id="btnGuardar" class="btn btn-primary" iconSclass="" />
 							</row>
 
 						</rows>
@@ -57,7 +57,7 @@
 							<listcell>
 								<button iconSclass="z-icon-edit"
 									forward="onClick=wdwUnidadMedida.onUpdateItem(${each})"
-									class="btn-success" />
+									class="btn-info" />
 							</listcell>
 							<listcell>
 								<button iconSclass="z-icon-times"

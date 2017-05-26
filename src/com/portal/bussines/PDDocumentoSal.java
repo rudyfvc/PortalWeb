@@ -51,7 +51,7 @@ public class PDDocumentoSal extends PDAbstract {
 			+ "	on doc.cod_empresa = emp.cod_empresa "
 			+ "	inner join pd_tipo_movimiento tipo "
 			+ "	on doc.cod_tipo_movimiento = tipo.cod_tipo_movimiento "
-			+ "	inner join pd_cliente cliente "
+			+ "	left join pd_cliente cliente "
 			+ "	on doc.cod_cliente = cliente.cod_cliente "
 			+ "  where doc.cod_empresa = ? " + "     and doc.cod_periodo = ? "
 			+ "  and doc.cod_tipo_movimiento = ? ";

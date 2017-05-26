@@ -15,7 +15,9 @@ public class PDResolucion extends PDAbstract {
 
 	private static final String SQL_ADD_RESOLUCION = " insert into pd_resolucion(cod_resolucion,cod_empresa, resolucion,fecha_resolucion,estado,"
 			+ " doc_tipo,doc_serie,doc_numero_inicial, doc_numero_final, doc_numero_actual, log_insertdate, log_insertuser) "
-			+ " values(nextval('pd_resolucion_sq'),?,?,cast(? as date),?,?,?,?,?,0,current_timestamp,?)";
+			+ " values(?,?,?,cast(? as date),?,?,?,?,?,?,current_timestamp,?)";
+
+	private static final String SQL_GET_SEQUENCE = "select nextval('pd_resolucion_sq') ";
 
 	private static final String SQL_GET_RESOLUCIONES = "select res.cod_resolucion,	"
 			+ "	res.cod_empresa,	"
@@ -34,6 +36,8 @@ public class PDResolucion extends PDAbstract {
 			+ "	where res.cod_empresa = ? ";
 
 	private static final String SQL_WHERE_ESTADO = "   and res.estado = ? ";
+
+	private static final String SQL_WHERE_SERIE = "   and res.doc_serie = ? ";
 
 	private static final String SQL_WHERE_TIPO = "   and res.doc_tipo = ? ";
 
@@ -81,10 +85,17 @@ public class PDResolucion extends PDAbstract {
 		return dml(
 				conn,
 				SQL_ADD_RESOLUCION,
-				new Object[] { res.getCod_empresa(), res.getResolucion(),
-						res.getFecha_resolucion(), 1, res.getDoc_tipo(),
-						res.getDoc_serie(), res.getDoc_numero_inicial(),
-						res.getDoc_numero_final(), usuario }) > 0;
+				new Object[] { res.getCod_resolucion(), res.getCod_empresa(),
+						res.getResolucion(), res.getFecha_resolucion(), 1,
+						res.getDoc_tipo(), res.getDoc_serie(),
+						res.getDoc_numero_inicial(), res.getDoc_numero_final(),
+						res.getDoc_numero_inicial(), usuario }) > 0;
+	}
+
+	public Long getSecuencia(Connection conn) throws SQLException {
+		Long b = consultaEscalar(conn, SQL_GET_SEQUENCE, Long.class, null);
+
+		return b;
 	}
 
 	public boolean editarResolucion(Connection conn, Long numeroFinal,
@@ -107,6 +118,30 @@ public class PDResolucion extends PDAbstract {
 
 		return consultaDTO(conn, sql, ResolucionDTO.class, new Object[] {
 				codEmpresa, 1, docTipo });
+	}
+
+	public ResolucionDTO existeResolucion(Connection conn, Long codEmpresa,
+			String docTipo, String docSerie) throws SQLException {
+		String sql = SQL_GET_RESOLUCIONES + SQL_WHERE_SERIE + SQL_WHERE_TIPO;
+
+		return consultaDTO(conn, sql, ResolucionDTO.class, new Object[] {
+				codEmpresa, docSerie, docTipo });
+	}
+
+	public boolean existeResolucionActiva(Connection conn, Long codEmpresa,
+			String docTipo) throws SQLException {
+
+		String sql = SQL_GET_RESOLUCIONES + SQL_WHERE_ESTADO + SQL_WHERE_TIPO;
+
+		List<ResolucionDTO> resoluciones = consultaLista(conn, sql,
+				ResolucionDTO.class, new Object[] { codEmpresa, 1, docTipo });
+
+		if (resoluciones.size() > 0) {
+			return true;
+		}
+
+		return false;
+
 	}
 
 	public boolean addDetalleRes(Connection conn, Long codResolucion,

@@ -1,11 +1,11 @@
 <?page title="Empresas" contentType="text/html;charset=UTF-8"?>
 <zk>
-	<window title="Empresas" border="none" class="panel-default"
+	<window title="Empresas" class="panel-default"
 		apply="com.portal.control.configuraciones.WdwEmpresas" height="100%"
 		id="wdwEmpresas">
 		<div align="right">
 			<button id="btnNuevaEmpresa" label="Nueva Empresa"
-				class="btn btn-success" />
+				class="btn btn-primary" />
 		</div>
 		<separator height="15px" />
 		<listbox id="ltbEmpresas">
@@ -27,7 +27,7 @@
 					<listcell>
 						<button iconSclass="z-icon-edit"
 							forward="onClick=wdwEmpresas.onUpdateItem(${each})"
-							class="btn-success" />
+							class="btn-info" />
 					</listcell>
 					<listcell>
 						<button iconSclass="z-icon-times"

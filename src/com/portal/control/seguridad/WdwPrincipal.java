@@ -2,6 +2,8 @@ package com.portal.control.seguridad;
 
 import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.select.Selectors;
+import org.zkoss.zul.Include;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Menu;
 
@@ -24,6 +26,11 @@ public class WdwPrincipal extends ComposerBase {
 			lblFecha.setValue(Utils.getSystemDate());
 		}
 
+		Include include = (Include) Selectors
+				.iterable(getPage(), "#mainInclude").iterator().next();
+		include.setSrc("/principal/principal.zul");
+
+		
 		log.debug("mostrando menu principal...");
 	}
 

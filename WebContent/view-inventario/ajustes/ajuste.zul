@@ -1,6 +1,6 @@
 <zk>
 	<window title="Ajuste de Inventario" border="normal" mode="modal"
-		id="wdwVenta" width="850px"
+		id="wdwAjuste" width="850px"
 		apply="com.portal.control.inventario.WdwAjuste" closable="true"
 		class="panel-default">
 		<grid class="fgrid">

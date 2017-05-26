@@ -1,0 +1,8 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window>
+		<div align="center">
+			<!--   <image src="../iconos/fondo.jpg" height="100%" width="100%" />-->
+		</div>
+	</window>
+</zk>

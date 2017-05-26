@@ -1,4 +1,8 @@
 <div>
+	<div align="center">
+		<image src="./../iconos/executive.png" height="100px"
+			width="100px" />
+	</div>
 	<menubar id="menubar" orient="vertical"
 		apply="com.portal.control.seguridad.MenuOpciones" width="200px">
 	</menubar>

@@ -87,6 +87,23 @@ public class WdwProveedor extends ComposerBase {
 			return;
 		}
 
+		if (txtDpi.getText() != null && txtDpi.getText().trim().length() > 0) {
+			if (!Utils.ValidaCUI(txtDpi.getText().trim())) {
+				showErrorMessage(nombreOperacion,
+						"El DPI ingresado no es válido");
+				return;
+			}
+		}
+
+		if (txtCorreoElectronico.getText() != null
+				&& txtCorreoElectronico.getText().trim().length() > 0) {
+			if (!Utils.isEmail(txtCorreoElectronico.getText().trim())) {
+				showErrorMessage(nombreOperacion,
+						"El correo electrónico ingresado es inválido.");
+				return;
+			}
+		}
+
 		if (txtDireccion.getText() == null
 				|| txtDireccion.getText().trim().equalsIgnoreCase("")) {
 			showErrorMessage(nombreOperacion,
@@ -113,6 +130,25 @@ public class WdwProveedor extends ComposerBase {
 
 		try {
 			conn = Utils.getConnection();
+
+			ProveedorDTO proveedorNIT = objProveedor.getProveedorPorNit(conn,
+					prov.getNit());
+
+			if (proveedorNIT != null) {
+				if (getOperacion().equalsIgnoreCase(OPERACION_EDITAR)) {
+					if (!seleccion.getCod_proveedor().equalsIgnoreCase(
+							proveedorNIT.getCod_proveedor())) {
+						showErrorMessage(nombreOperacion,
+								"Ya existe un proveedor con el mismo NIT.");
+						return;
+					}
+				} else {
+					showErrorMessage(nombreOperacion,
+							"Ya existe un proveedor con el mismo NIT.");
+					return;
+				}
+			}
+
 			if (getOperacion().equalsIgnoreCase(OPERACION_EDITAR)) {
 				prov.setCod_proveedor(seleccion.getCod_proveedor());
 				if (objProveedor.actualizarProveedor(conn, prov)) {

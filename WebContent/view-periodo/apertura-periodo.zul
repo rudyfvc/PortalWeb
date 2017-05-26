@@ -1,5 +1,5 @@
 <zk>
-	<window title="Apertura de Periodo por empresa" border="normal"
+	<window title="Apertura de Periodo por empresa" 
 		apply="com.portal.control.periodo.WdwAperturaPeriodo"
 		class="panel-default" height="100%" id="wdwAperturaPeriodo">
 		<grid class="fgrid">

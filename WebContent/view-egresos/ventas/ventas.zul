@@ -55,7 +55,7 @@
 					<listcell>
 						<button iconSclass="z-icon-edit"
 							forward="onClick=wdwVentas.onUpdateItem(${each})"
-							class="btn-success" />
+							class="btn-info" />
 					</listcell>
 				</listitem>
 			</template>

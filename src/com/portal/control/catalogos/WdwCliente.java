@@ -87,6 +87,23 @@ public class WdwCliente extends ComposerBase {
 			return;
 		}
 
+		if (txtDpi.getText() != null && txtDpi.getText().trim().length() > 0) {
+			if (!Utils.ValidaCUI(txtDpi.getText().trim())) {
+				showErrorMessage(nombreOperacion,
+						"El DPI ingresado no es válido");
+				return;
+			}
+		}
+
+		if (txtCorreoElectronico.getText() != null
+				&& txtCorreoElectronico.getText().trim().length() > 0) {
+			if (!Utils.isEmail(txtCorreoElectronico.getText().trim())) {
+				showErrorMessage(nombreOperacion,
+						"El correo electrónico ingresado es inválido.");
+				return;
+			}
+		}
+
 		if (txtDireccion.getText() == null
 				|| txtDireccion.getText().trim().equalsIgnoreCase("")) {
 			showErrorMessage(nombreOperacion,
@@ -110,9 +127,28 @@ public class WdwCliente extends ComposerBase {
 		cliente.setPatente(txtPatenteComercio.getText());
 		cliente.setRegistro_fiscal(txtRegistroFiscal.getText());
 		cliente.setEstado("1");
-		
+
 		try {
 			conn = Utils.getConnection();
+
+			ClienteDTO clienteNIT = objCliente.getClientePorNit(conn,
+					cliente.getNit());
+
+			if (clienteNIT != null) {
+				if (getOperacion().equalsIgnoreCase(OPERACION_EDITAR)) {
+					if (!seleccion.getCod_cliente().equalsIgnoreCase(
+							clienteNIT.getCod_cliente())) {
+						showErrorMessage(nombreOperacion,
+								"Ya existe un cliente con el mismo NIT.");
+						return;
+					}
+				} else {
+					showErrorMessage(nombreOperacion,
+							"Ya existe un cliente con el mismo NIT.");
+					return;
+				}
+			}
+
 			if (getOperacion().equalsIgnoreCase(OPERACION_EDITAR)) {
 				cliente.setCod_cliente(seleccion.getCod_cliente());
 				if (objCliente.actualizarCliente(conn, cliente)) {

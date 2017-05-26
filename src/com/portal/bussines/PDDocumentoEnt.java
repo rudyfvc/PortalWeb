@@ -51,7 +51,7 @@ public class PDDocumentoEnt extends PDAbstract {
 			+ "	on doc.cod_empresa = emp.cod_empresa "
 			+ "	inner join pd_tipo_movimiento tipo "
 			+ "	on doc.cod_tipo_movimiento = tipo.cod_tipo_movimiento "
-			+ "	inner join pd_proveedor prov "
+			+ "	left join pd_proveedor prov "
 			+ "	on doc.cod_proveedor = prov.cod_proveedor "
 			+ "  where doc.cod_empresa = ? " + "     and doc.cod_periodo = ? "
 			+ "  and doc.cod_tipo_movimiento = ? ";

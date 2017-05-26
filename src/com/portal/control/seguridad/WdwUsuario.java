@@ -74,6 +74,15 @@ public class WdwUsuario extends ComposerBase {
 			return;
 		}
 
+		if (txtEmail.getText() != null
+				&& txtEmail.getText().trim().length() > 0) {
+			if (!Utils.isEmail(txtEmail.getText().trim())) {
+				showErrorMessage(nombreOperacion,
+						"El email ingresado no es válido.");
+				return;
+			}
+		}
+
 		if (cmbPerfil.getSelectedItem() == null) {
 			showErrorMessage(nombreOperacion,
 					"Seleccione un perfil para asignar al usuario.");

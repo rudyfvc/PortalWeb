@@ -29,9 +29,7 @@
 								id="menuUsuario" image="/iconos/64x64/15.png">
 								<menupopup>
 									<menuitem id="lblConf"
-										label="Configuración" image="/iconos/64x64/42.png" />
-									<menuitem id="itPerfil"
-										label="Perfil" image="/iconos/64x64/3.png" />
+										label="Cambiar Contraseña" image="/iconos/64x64/42.png" />
 									<menuseparator></menuseparator>
 									<menuitem id="lblLogout"
 										label="Logout" image="/iconos/64x64/5.png" />
@@ -46,10 +44,11 @@
 			title="Menú Principal">
 			<include src="layout/menu.zul" />
 		</west>
-		<center id="mainContent" autoscroll="true" border="none"
-			self="@insert(content)">
-			<include id="mainInclude" self="@define(content)"
-				apply="com.portal.control.seguridad.MenuOpciones" />
+		<center id="mainContent" autoscroll="true">
+			<div class="container-include">
+				<include id="mainInclude" self="@define(content)"
+					apply="com.portal.control.seguridad.MenuOpciones" />
+			</div>
 		</center>
 	</borderlayout>
 </zk>

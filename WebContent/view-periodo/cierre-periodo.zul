@@ -1,5 +1,5 @@
 <zk>
-	<window title="Cierre de Periodo por empresa" border="normal"
+	<window title="Cierre de Periodo por empresa"
 		apply="com.portal.control.periodo.WdwCierrePeriodo"
 		class="panel-default" height="100%" id="wdwAsignacionPeriodo">
 		<grid class="fgrid">

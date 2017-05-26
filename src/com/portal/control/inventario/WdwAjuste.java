@@ -24,12 +24,14 @@ import org.zkoss.zul.Window;
 
 import com.portal.base.ComposerBase;
 import com.portal.bussines.PDConfiguracion;
+import com.portal.bussines.PDDocumentoEnt;
 import com.portal.bussines.PDDocumentoSal;
-import com.portal.bussines.PDInventario;
 import com.portal.bussines.PDPeriodo;
 import com.portal.bussines.PDProducto;
 import com.portal.bussines.PDResolucion;
-import com.portal.dto.ClienteDTO;
+import com.portal.dto.AjusteDetalleDTO;
+import com.portal.dto.DocumentoEntDetalleDTO;
+import com.portal.dto.DocumentoEntEncabezadoDTO;
 import com.portal.dto.DocumentoSalDetalleDTO;
 import com.portal.dto.DocumentoSalEncabezadoDTO;
 import com.portal.dto.ProductoDTO;
@@ -42,7 +44,7 @@ import com.portal.utils.Utils;
 public class WdwAjuste extends ComposerBase {
 	private static final long serialVersionUID = 1L;
 
-	private Window wdwVenta;
+	private Window wdwAjuste;
 	private Combobox cmbEmpresa, cmbTipoAjuste;
 	private Textbox txtMarca, txtSerie, txtNumero, txtPeriodo, txtCodProducto,
 			txtMotivoAjuste, txtProducto, txtUnidadMedida, txtTipo;
@@ -51,21 +53,23 @@ public class WdwAjuste extends ComposerBase {
 	private Datebox txtFecha;
 
 	private PDProducto objProducto;
-	private PDInventario objInventario;
 	private PDResolucion objResolucion;
 	private PDDocumentoSal objDocumento;
-	private List<DocumentoSalDetalleDTO> items;
+	private List<AjusteDetalleDTO> items;
+	private List<DocumentoEntDetalleDTO> entradas;
+	private List<DocumentoSalDetalleDTO> salidas;
 
 	private static File fichero = null;
 	private static ProductoDTO producto = null;
-	private static ClienteDTO cliente = null;
 	private static ResolucionDTO res = null;
 	private static SecEmpresa empresa = null;
 
 	public WdwAjuste() {
 		log = Logger.getLogger(getClass());
 		nombreOperacion = "Ajuste de Inventario";
-		items = new ArrayList<DocumentoSalDetalleDTO>();
+		items = new ArrayList<AjusteDetalleDTO>();
+		entradas = new ArrayList<DocumentoEntDetalleDTO>();
+		salidas = new ArrayList<DocumentoSalDetalleDTO>();
 	}
 
 	public void doAfterCompose(Component comp) throws Exception {
@@ -80,16 +84,9 @@ public class WdwAjuste extends ComposerBase {
 	}
 
 	public void onOK$txtCantidad() throws SQLException, NamingException {
-		Connection conn = null;
-		objInventario = new PDInventario(userLoguiado);
-		SecEmpresa empr = null;
-		String codPeriodo = null;
-
 		if (cmbEmpresa.getSelectedIndex() < 0) {
 			showErrorMessage(nombreOperacion, "Seleccione una empresa.");
 			return;
-		} else {
-			empr = cmbEmpresa.getSelectedItem().getValue();
 		}
 
 		if (txtPeriodo.getText() == null
@@ -97,8 +94,6 @@ public class WdwAjuste extends ComposerBase {
 			showErrorMessage(nombreOperacion,
 					"La empresa seleccionada no posee un periodo para operar.");
 			return;
-		} else {
-			codPeriodo = txtPeriodo.getText().trim();
 		}
 
 		if (txtCodProducto.getText() == null
@@ -139,64 +134,32 @@ public class WdwAjuste extends ComposerBase {
 			return;
 		}
 
-		DocumentoSalDetalleDTO det = new DocumentoSalDetalleDTO();
-		Long codProducto = Long.parseLong(producto.getCod_producto());
-		det.setCod_producto(codProducto);
-		det.setProducto(producto.getProducto());
-		det.setCantidad(Long.parseLong(txtCantidad.getText()));
-		det.setDoc_monto_unitario(producto.getPrecio());
-
-		log.debug(producto.getPrecio());
-		log.debug(producto.getDesc_porcentaje());
-
-		det.setDoc_monto_descuento_unitario(0D);
-		det.setDoc_monto_descuento(0D);
-		det.setDoc_monto_gravado(Utils.round(0D));
-		det.setDoc_monto_total(0D);
-
-		if (buscarItem(det.getCod_producto().toString())) {
+		if (buscarItem(txtCodProducto.getText())) {
 			showErrorMessage(nombreOperacion,
-					"El producto ya se encuentra agregado.");
+					"El producto ya se encuentra ingresado.");
 			return;
 		}
 
-		try {
-			conn = Utils.getConnection();
+		AjusteDetalleDTO det = new AjusteDetalleDTO();
 
-			Long existencia = objInventario.getExistenciaProducto(conn,
-					Long.parseLong(empr.getCod_empresa()), codPeriodo,
-					codProducto);
+		det.setCantidad(txtCantidad.getValue().longValue());
+		det.setCod_producto(Long.valueOf(txtCodProducto.getText()));
+		det.setProducto(txtProducto.getText());
 
-			log.debug("cantidad en existencia: " + existencia);
-
-			if (existencia.intValue() >= txtCantidad.getValue()) {
-				items.add(det);
-				ltbDetalle.setModel(new ListModelList<DocumentoSalDetalleDTO>(
-						items));
-				limpiarDatosProducto();
-			} else {
-				showErrorMessage(
-						nombreOperacion,
-						"No posee suficiente producto para despachar la cantidad ingresada, disponible: "
-								+ existencia);
-				return;
-			}
-
-		} finally {
-			Utils.closeConnection(conn);
-		}
-
+		items.add(det);
+		ltbDetalle.setModel(new ListModelList<AjusteDetalleDTO>(items));
+		limpiarDatosProducto();
 	}
 
 	public void onRemoverItem(Event e) throws NamingException, SQLException {
-		DocumentoSalDetalleDTO seleccion = (DocumentoSalDetalleDTO) e.getData();
+		AjusteDetalleDTO seleccion = (AjusteDetalleDTO) e.getData();
 		log.debug("Eliminando producto: " + seleccion.getCod_producto());
 
 		items.remove(seleccion);
-		ltbDetalle.setModel(new ListModelList<DocumentoSalDetalleDTO>(items));
+		ltbDetalle.setModel(new ListModelList<AjusteDetalleDTO>(items));
 	}
 
-	public void onClick$btnGuardar() throws NamingException, SQLException {
+	public void onClick$btnGuardar() throws Exception {
 
 		if (cmbEmpresa.getSelectedIndex() < 0) {
 			showErrorMessage(nombreOperacion,
@@ -214,6 +177,7 @@ public class WdwAjuste extends ComposerBase {
 		if (txtTipo.getText() == null
 				|| txtTipo.getText().trim().equalsIgnoreCase("")) {
 			showErrorMessage(nombreOperacion, "Tipo de ajuste inválido");
+			return;
 		}
 
 		if (txtSerie.getText() == null
@@ -260,15 +224,136 @@ public class WdwAjuste extends ComposerBase {
 		}
 
 		log.debug("Datos validados, guardando ajuste");
+		if (cmbTipoAjuste.getSelectedItem().getValue().toString()
+				.equalsIgnoreCase("ENT")) {
+			entradas.clear();
+			for (AjusteDetalleDTO ajuste : items) {
+				DocumentoEntDetalleDTO entrada = new DocumentoEntDetalleDTO();
+				entrada.setCantidad(ajuste.getCantidad());
+				entrada.setCod_producto(ajuste.getCod_producto());
+				entrada.setProducto(ajuste.getProducto());
+				entrada.setDoc_monto_descuento(0D);
+				entrada.setDoc_monto_descuento_unitario(0D);
+				entrada.setDoc_monto_gravado(0D);
+				entrada.setDoc_monto_iva(0D);
+				entrada.setDoc_monto_total(0D);
+				entrada.setDoc_monto_unitario(0D);
+				entradas.add(entrada);
+			}
+			procesarEntrada();
+		} else if (cmbTipoAjuste.getSelectedItem().getValue().toString()
+				.equalsIgnoreCase("SAL")) {
+			salidas.clear();
+			for (AjusteDetalleDTO ajuste : items) {
+				DocumentoSalDetalleDTO salida = new DocumentoSalDetalleDTO();
+				salida.setCantidad(ajuste.getCantidad());
+				salida.setCod_producto(ajuste.getCod_producto());
+				salida.setProducto(ajuste.getProducto());
+				salida.setDoc_monto_descuento(0D);
+				salida.setDoc_monto_descuento_unitario(0D);
+				salida.setDoc_monto_gravado(0D);
+				salida.setDoc_monto_iva(0D);
+				salida.setDoc_monto_total(0D);
+				salida.setDoc_monto_unitario(0D);
+				salidas.add(salida);
+			}
+			procesarSalida();
+		} else {
+			showErrorMessage(nombreOperacion, "Tipo de ajuste inválido.");
+		}
 
+	}
+
+	private void procesarEntrada() throws Exception {
 		SecEmpresa empresa = cmbEmpresa.getSelectedItem().getValue();
 
+		DocumentoEntEncabezadoDTO enc = new DocumentoEntEncabezadoDTO();
+
+		enc.setCod_empresa(Long.parseLong(empresa.getCod_empresa()));
+		enc.setCod_periodo(txtPeriodo.getText());
+		enc.setCod_tipo_movimiento((long) TiposMovimiento.AJUSTE.CODIGO);
+		enc.setDoc_estado(EstadosDocumento.VIGENTE.ESTADO);
+		enc.setDoc_fecha(txtFecha.getText());
+
+		enc.setDoc_monto_descuento(0D);
+		enc.setDoc_monto_gravado(0D);
+		enc.setDoc_monto_total(0D);
+		enc.setDoc_monto_iva(0D);
+
+		enc.setDoc_numero(Long.parseLong(txtNumero.getText()));
+		enc.setDoc_serie(txtSerie.getText());
+		enc.setDoc_tipo(txtTipo.getText());
+
+		PDDocumentoEnt objDocumento = new PDDocumentoEnt(userLoguiado);
+		PDPeriodo objPeriodo = new PDPeriodo(userLoguiado);
+
+		Connection conn = null;
+
+		try {
+			conn = Utils.getConnection();
+			conn.setAutoCommit(false);
+
+			String estadoPeriodo = objPeriodo.getEstadoPeriodo(conn,
+					enc.getCod_empresa(), txtPeriodo.getText());
+
+			if (estadoPeriodo == null) {
+				showErrorMessage(nombreOperacion,
+						"El estado del periodo es inválido.");
+				return;
+			}
+
+			if (!estadoPeriodo.equalsIgnoreCase(PDPeriodo.ESTADO_ABIERTO)) {
+				showErrorMessage(nombreOperacion,
+						"El periodo ya se encuentra cerrado.");
+				return;
+			}
+
+			String periodoFecha = Utils.getPeriodo(txtFecha.getValue());
+
+			log.debug("periodo de la fecha: " + periodoFecha);
+
+			if (!txtPeriodo.getText().equalsIgnoreCase(periodoFecha)) {
+				showErrorMessage(nombreOperacion,
+						"La fecha que está ingresando no corresponde al periodo en curso.");
+				return;
+			}
+
+			DocumentoEntEncabezadoDTO docto = objDocumento
+					.buscarFacturaProveedor(conn, enc);
+
+			if (docto == null) {
+				if (objDocumento.addDocumento(conn, enc, entradas)) {
+					showInformationMessage(nombreOperacion,
+							"Documento almacenado exitosamente.");
+					conn.commit();
+					Events.echoEvent("onClose", wdwAjuste, null);
+				} else {
+					showErrorMessage(nombreOperacion,
+							"No fue posible guardar el documento.");
+					conn.rollback();
+				}
+			} else {
+				showErrorMessage(nombreOperacion,
+						"El documento del proveedor ya se encuentra ingresado.");
+				return;
+			}
+
+		} catch (Exception e) {
+			conn.rollback();
+			throw e;
+		} finally {
+			Utils.closeConnection(conn);
+		}
+	}
+
+	private void procesarSalida() throws Exception {
+
+		SecEmpresa empresa = cmbEmpresa.getSelectedItem().getValue();
 		DocumentoSalEncabezadoDTO enc = new DocumentoSalEncabezadoDTO();
 
 		enc.setCod_empresa(Long.parseLong(empresa.getCod_empresa()));
 		enc.setCod_periodo(txtPeriodo.getText());
-		enc.setCod_cliente(Long.parseLong(cliente.getCod_cliente()));
-		enc.setCod_tipo_movimiento((long) TiposMovimiento.VENTA.CODIGO);
+		enc.setCod_tipo_movimiento((long) TiposMovimiento.AJUSTE.CODIGO);
 		enc.setDoc_estado(EstadosDocumento.VIGENTE.ESTADO);
 		enc.setDoc_fecha(txtFecha.getText());
 
@@ -317,32 +402,23 @@ public class WdwAjuste extends ComposerBase {
 				return;
 			}
 
-			DocumentoSalEncabezadoDTO docto = objDocumento
-					.buscarFacturaCliente(conn, enc);
-
-			if (docto == null) {
-				if (objDocumento.addDocumento(conn, enc, items)) {
-					if (objResolucion.setUsado(conn, res.getCod_resolucion(),
-							enc.getDoc_tipo(), enc.getDoc_serie(),
-							enc.getDoc_numero())) {
-						showInformationMessage(nombreOperacion,
-								"Documento almacenado exitosamente.");
-						Utils.commit(conn);
-						Events.echoEvent("onClose", wdwVenta, null);
-					} else {
-						showErrorMessage(nombreOperacion,
-								"No fue posible marcar la factura como baja.");
-						Utils.rollback(conn);
-					}
+			if (objDocumento.addDocumento(conn, enc, salidas)) {
+				if (objResolucion.setUsado(conn, res.getCod_resolucion(),
+						enc.getDoc_tipo(), enc.getDoc_serie(),
+						enc.getDoc_numero())) {
+					showInformationMessage(nombreOperacion,
+							"Documento almacenado exitosamente.");
+					Utils.commit(conn);
+					Events.echoEvent("onClose", wdwAjuste, null);
 				} else {
 					showErrorMessage(nombreOperacion,
-							"No fue posible guardar el documento.");
+							"No fue posible marcar el documento como baja.");
 					Utils.rollback(conn);
 				}
 			} else {
 				showErrorMessage(nombreOperacion,
-						"El documento del proveedor ya se encuentra ingresado.");
-				return;
+						"No fue posible guardar el documento.");
+				Utils.rollback(conn);
 			}
 
 		} catch (Exception e) {
@@ -358,7 +434,7 @@ public class WdwAjuste extends ComposerBase {
 		if (fichero.exists())
 			fichero.delete();
 
-		wdwVenta.detach();
+		wdwAjuste.detach();
 	}
 
 	public void onChange$cmbEmpresa() throws NamingException, SQLException {
@@ -405,7 +481,7 @@ public class WdwAjuste extends ComposerBase {
 
 	private boolean buscarItem(String codProducto) {
 
-		for (DocumentoSalDetalleDTO item : items) {
+		for (AjusteDetalleDTO item : items) {
 			if (codProducto.equalsIgnoreCase(item.getCod_producto().toString())) {
 				return true;
 			}

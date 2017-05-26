@@ -2,6 +2,7 @@ package com.portal.control.inventario;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.NamingException;
@@ -10,7 +11,6 @@ import org.apache.log4j.Logger;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
-import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.ListModelList;
@@ -22,6 +22,7 @@ import com.portal.base.Pages;
 import com.portal.bussines.PDDocumentoEnt;
 import com.portal.bussines.PDDocumentoSal;
 import com.portal.bussines.PDPeriodo;
+import com.portal.dto.AjusteDTO;
 import com.portal.dto.DocumentoEntEncabezadoDTO;
 import com.portal.dto.DocumentoSalEncabezadoDTO;
 import com.portal.dto.PeriodoDTO;
@@ -37,6 +38,8 @@ public class WdwAjustes extends ComposerBase {
 	private Listbox ltbAjustes;
 	private Combobox cmbEmpresa, cmbPeriodo;
 
+	private PDDocumentoEnt objDoctoEntrada;
+	private PDDocumentoSal objDoctoSalida;
 	private PDPeriodo objPeriodo;
 
 	public WdwAjustes() {
@@ -69,6 +72,8 @@ public class WdwAjustes extends ComposerBase {
 
 	public void cargarAjustes() throws NamingException, SQLException {
 		Connection conn = null;
+		objDoctoEntrada = new PDDocumentoEnt(userLoguiado);
+		objDoctoSalida = new PDDocumentoSal(userLoguiado);
 
 		if (cmbEmpresa.getSelectedIndex() > -1
 				&& cmbPeriodo.getSelectedIndex() > -1) {
@@ -79,6 +84,48 @@ public class WdwAjustes extends ComposerBase {
 				Long codEmpresa = Long.parseLong(emp.getCod_empresa());
 				String codPeriodo = per.getCod_periodo();
 				Long codTipoMovimiento = (long) TiposMovimiento.AJUSTE.CODIGO;
+
+				conn = Utils.getConnection();
+
+				List<DocumentoEntEncabezadoDTO> ents = objDoctoEntrada
+						.getEntradasPorTipo(conn, codEmpresa, codPeriodo,
+								codTipoMovimiento);
+
+				List<DocumentoSalEncabezadoDTO> sals = objDoctoSalida
+						.getSalidasPorTipo(conn, codEmpresa, codPeriodo,
+								codTipoMovimiento);
+
+				List<AjusteDTO> ajustes = new ArrayList<AjusteDTO>();
+
+				for (DocumentoEntEncabezadoDTO ent : ents) {
+					AjusteDTO ajuste = new AjusteDTO();
+					ajuste.setDoc_tipo(ent.getDoc_tipo());
+					ajuste.setDoc_serie(ent.getDoc_serie());
+					ajuste.setDoc_numero(ent.getDoc_numero());
+					ajuste.setDoc_fecha(ent.getDoc_fecha());
+					ajuste.setDoc_estado(ent.getDoc_estado());
+					ajuste.setCod_empresa(ent.getCod_empresa());
+					ajuste.setCod_movimiento(ent.getCod_movimiento());
+					ajuste.setCod_periodo(ent.getCod_periodo());
+					ajuste.setCod_tipo_movimiento(ent.getCod_tipo_movimiento());
+					ajustes.add(ajuste);
+				}
+
+				for (DocumentoSalEncabezadoDTO sal : sals) {
+					AjusteDTO ajuste = new AjusteDTO();
+					ajuste.setDoc_tipo(sal.getDoc_tipo());
+					ajuste.setDoc_serie(sal.getDoc_serie());
+					ajuste.setDoc_numero(sal.getDoc_numero());
+					ajuste.setDoc_fecha(sal.getDoc_fecha());
+					ajuste.setDoc_estado(sal.getDoc_estado());
+					ajuste.setCod_empresa(sal.getCod_empresa());
+					ajuste.setCod_movimiento(sal.getCod_movimiento());
+					ajuste.setCod_periodo(sal.getCod_periodo());
+					ajuste.setCod_tipo_movimiento(sal.getCod_tipo_movimiento());
+					ajustes.add(ajuste);
+				}
+
+				ltbAjustes.setModel(new ListModelList<AjusteDTO>(ajustes));
 
 				conn = Utils.getConnection();
 

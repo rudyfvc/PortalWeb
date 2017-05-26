@@ -87,27 +87,18 @@ public class PDPerfil extends PDAbstract {
 		boolean updatePerfil = dml(portal, SQL_UPDATE_PERFIL, new Object[] {
 				perNombre, codPerfil }) > 0;
 
-		boolean deleteOpciones = false;
-
 		if (updatePerfil) {
-			deleteOpciones = dml(portal, SQL_DELETE_PERFIL_OPCION,
-					new Object[] { codPerfil }) > 0;
+			dml(portal, SQL_DELETE_PERFIL_OPCION, new Object[] { codPerfil });
 
-			if (deleteOpciones) {
-				for (String opcion : opciones) {
-					if (dml(portal, SQL_ADD_PERFIL_OPCION, new Object[] {
-							codPerfil, Long.parseLong(opcion),
-							usuario }) <= 0) {
-						log.debug("falló la inserción de la opcion: " + opcion);
-						return false;
-					}
-
+			for (String opcion : opciones) {
+				if (dml(portal, SQL_ADD_PERFIL_OPCION, new Object[] {
+						codPerfil, Long.parseLong(opcion), usuario }) <= 0) {
+					log.debug("falló la inserción de la opcion: " + opcion);
+					return false;
 				}
-			} else {
-				log.debug("no fue posible eliminar todas las opciones del perfil. "
-						+ codPerfil);
-				return false;
+
 			}
+
 		} else {
 			log.debug("no fue posible editar el perfil.");
 			return false;

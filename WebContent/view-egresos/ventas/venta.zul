@@ -67,7 +67,7 @@
 					</cell>
 					<cell>
 						<textbox class="form-control"
-							id="txtCodProducto" />
+							id="txtCodProducto" maxlength="15" />
 					</cell>
 					<cell>
 						<label value="Producto" />

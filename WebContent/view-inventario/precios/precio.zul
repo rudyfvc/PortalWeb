@@ -47,7 +47,7 @@
 						<row>
 							<label value="Precio" />
 							<decimalbox id="txtPrecio"
-								class="form-control format-moneda" maxlength="10" />
+								class="form-control format-moneda" maxlength="8" />
 						</row>
 						<row>
 							<label value="Porcentaje descuento" />

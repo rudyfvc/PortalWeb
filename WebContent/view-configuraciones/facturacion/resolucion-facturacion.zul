@@ -1,12 +1,12 @@
 <zk>
 
-	<window title="Resoluciones de Facturación" border="none"
-		height="100%" width="100%"
+	<window title="Resoluciones de Facturación" height="100%"
+		width="100%"
 		apply="com.portal.control.configuraciones.WdwResoluciones"
 		id="wdwResoluciones" class="panel-default">
 		<hbox widths="30%,70%">
 
-			<grid sclass="fgrid">
+			<grid sclass="grid-sin-borde">
 				<columns>
 					<column width="30%" />
 					<column width="70%" />
@@ -24,8 +24,8 @@
 					</row>
 					<row>
 						<label value="Resolución" />
-						<textbox id="txtResolucion"
-							class="form-control" />
+						<textbox id="txtResolucion" class="form-control"
+							maxlength="20" />
 					</row>
 					<row>
 						<label value="Resolución" />
@@ -74,13 +74,14 @@
 				<listbox id="ltbResoluciones" multiple="false">
 					<custom-attributes org.zkoss.zul.nativebar="true" />
 					<listhead>
-						<listheader label="Resolución" width="20%" />
+						<listheader label="Resolución" width="15%" />
 						<listheader label="Fecha" width="15%" />
-						<listheader label="Estado" width="15%" />
+						<listheader label="Estado" width="10%" />
 						<listheader label="Tipo" width="10%" />
 						<listheader label="Serie" width="10%" />
 						<listheader label="Del" width="10%" />
 						<listheader label="Al" width="10%" />
+						<listheader label="Último" width="10%" />
 					</listhead>
 					<template name="model">
 						<listitem>
@@ -92,6 +93,8 @@
 							<listcell label="${each.doc_numero_inicial}"
 								class="format-cantidad" />
 							<listcell label="${each.doc_numero_final}"
+								class="format-cantidad" />
+							<listcell label="${each.doc_numero_actual}"
 								class="format-cantidad" />
 						</listitem>
 					</template>

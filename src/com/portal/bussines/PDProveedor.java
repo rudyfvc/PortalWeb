@@ -18,6 +18,8 @@ public class PDProveedor extends PDAbstract {
 	private static final String SQL_WHERE_ESTADO_PROVEEDORES = " where prov.estado = ? ";
 	private static final String SQL_ORDER_BY_CODIGO = " order by prov.cod_proveedor ";
 
+	private static final String SQL_WHERE_PROVEEDOR_POR_NIT = "  where prov.nit = ?   ";
+
 	private static final String SQL_INSERT_PROVEEDOR = " insert into pd_proveedor "
 			+ " (cod_proveedor,"
 			+ " cod_tipo_entidad,"
@@ -109,6 +111,14 @@ public class PDProveedor extends PDAbstract {
 						proveedor.getTelefono_otro(),
 						Long.parseLong(proveedor.getEstado()), usuario,
 						proveedor.getCod_proveedor() }) > 0;
+	}
+
+	public ProveedorDTO getProveedorPorNit(Connection conn, String nit)
+			throws SQLException {
+		String sql = SQL_GET_PROVEEDORES + SQL_WHERE_PROVEEDOR_POR_NIT;
+
+		return consultaDTO(conn, sql, ProveedorDTO.class,
+				new Object[] { nit.toUpperCase() });
 	}
 
 }

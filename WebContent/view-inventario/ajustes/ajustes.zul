@@ -42,13 +42,13 @@
 					<listcell label="${each.doc_tipo}" />
 					<listcell label="${each.doc_serie}" />
 					<listcell label="${each.doc_numero}" />
-					<listcell label="${each.cliente}" />
+					<listcell label="${each.tipo_movimiento}" />
 					<listcell label="${each.doc_estado}" />
-					<listcell label="${each.motivo}" />
+					<listcell label="${each.doc_estado}" />
 					<listcell>
 						<button iconSclass="z-icon-edit"
 							forward="onClick=wdwVentas.onUpdateItem(${each})"
-							class="btn-success" />
+							class="btn-info" />
 					</listcell>
 				</listitem>
 			</template>

@@ -28,7 +28,7 @@
 				<row>
 					<label></label>
 					<button id="btnAgregar" label="Crear Producto"
-						width="100%" class="btn btn-success" iconSclass="z-icon-plus" />
+						width="100%" class="btn btn-primary" iconSclass="z-icon-plus" />
 				</row>
 			</rows>
 		</grid>
@@ -56,7 +56,7 @@
 					<listcell>
 						<button iconSclass="z-icon-edit"
 							forward="onClick=wdwProductos.onUpdateItem(${each})"
-							class="btn-success" />
+							class="btn-info" />
 					</listcell>
 					<listcell>
 						<button iconSclass="z-icon-times"
