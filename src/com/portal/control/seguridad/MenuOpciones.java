@@ -30,7 +30,7 @@ public class MenuOpciones extends ComposerBase {
 	private Menupopup menuPopUp;
 	private Menuitem menuItem;
 
-	private String itemWidth = "200px";
+	// private String itemWidth = "200px";
 	private String classIconosMenu = "bigicons";
 
 	public MenuOpciones() {
@@ -88,18 +88,18 @@ public class MenuOpciones extends ComposerBase {
 				menu.setLabel(each.getNombre());
 				menu.setImage(each.getImage());
 				menu.setSclass(classIconosMenu);
-				menu.setWidth(itemWidth);
+				// menu.setWidth(itemWidth);
 				menuPopUp = new Menupopup();
 				menuPopUp.setSclass(classIconosMenu);
 				menuPopUp.setParent(menu);
-				menuPopUp.setWidth(itemWidth);
+				// menuPopUp.setWidth(itemWidth);
 				menu.setParent(cmp);
 				armarMenu(menuPopUp, each);
 			} else {
 				menuItem = new Menuitem(each.getNombre());
 				menuItem.setParent(cmp);
 				menuItem.setId(each.getId());
-				menuItem.setWidth(itemWidth);
+				// menuItem.setWidth(itemWidth);
 				menuItem.setImage(each.getImage());
 				menuItem.setValue(each.getUrl());
 				menuItem.setSclass(classIconosMenu);

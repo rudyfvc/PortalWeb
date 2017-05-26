@@ -1,6 +1,11 @@
+/*************FONDO AZUL PRINCIPAL***************/
+.fondo-azul-principal {
+	background-color: #03303E;
+}
+
 .banner {
-	background: linear-gradient(top, #243a4f 80%, #1162ac 20%);
-	background: -webkit-linear-gradient(top, #243a4f, #1162ac);
+	background: #03303E;
+	background: #03303E;
 	color: white;
 	padding: 5px 10px;
 }
@@ -34,6 +39,25 @@
 	padding-top: 15px;
 	padding-right: 25px;
 	padding-bottom: 10px;
+}
+
+/**/
+.back-include {
+	background: -moz-linear-gradient(45deg, rgba(153, 218, 255, 1) 0%,
+		rgba(0, 128, 128, 1) 100%); /* ff3.6+ */
+	background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(153
+		, 218, 255, 1)), color-stop(100%, rgba(0, 128, 128, 1)));
+	/* safari4+,chrome */
+	background: -webkit-linear-gradient(45deg, rgba(153, 218, 255, 1) 0%,
+		rgba(0, 128, 128, 1) 100%); /* safari5.1+,chrome10+ */
+	background: -o-linear-gradient(45deg, rgba(153, 218, 255, 1) 0%,
+		rgba(0, 128, 128, 1) 100%); /* opera 11.10+ */
+	background: -ms-linear-gradient(45deg, rgba(153, 218, 255, 1) 0%,
+		rgba(0, 128, 128, 1) 100%); /* ie10+ */
+	background: linear-gradient(45deg, rgba(153, 218, 255, 1) 0%,
+		rgba(0, 128, 128, 1) 100%); /* w3c */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#008080',
+		endColorstr='#99DAFF', GradientType=1); /* ie6-9 */
 }
 
 .grid-sin-borde tr.z-row td.z-row-inner, tr.z-row, div.z-grid-body div.z-cell,

@@ -41,10 +41,11 @@
 			</div>
 		</north>
 		<west flex="true" splittable="false" collapsible="true"
-			title="Menú Principal">
+			title="Menú Principal" class="fondo-azul-principal">
 			<include src="layout/menu.zul" />
 		</west>
-		<center id="mainContent" autoscroll="true">
+		<center id="mainContent" autoscroll="true"
+			class="back-include">
 			<div class="container-include">
 				<include id="mainInclude" self="@define(content)"
 					apply="com.portal.control.seguridad.MenuOpciones" />

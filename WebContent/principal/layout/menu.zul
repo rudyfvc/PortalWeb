@@ -1,9 +1,9 @@
 <div>
-	<div align="center">
+	<div align="center" class="fondo-azul-principal">
 		<image src="./../iconos/executive.png" height="100px"
 			width="100px" />
 	</div>
-	<menubar id="menubar" orient="vertical"
+	<menubar id="menubar" orient="vertical" class="principal-menu"
 		apply="com.portal.control.seguridad.MenuOpciones" width="200px">
 	</menubar>
 </div>
